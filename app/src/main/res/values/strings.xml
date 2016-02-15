@@ -1,0 +1,121 @@
+<resources>
+
+
+    <!--für die App-->
+    <string name="app_name">Gymnasium Hochrad</string>
+    <string name="GymnHochradLOGO">Gymnasium Hochrad Logo</string>
+
+    <array name="draweritems">
+        <item>Blub</item>
+    </array>
+
+
+    <string name="drawer_open">Öffne die Navigationsleiste</string>
+    <string name="drawer_close">Schließe die Navigationsleiste</string>
+    
+    <string name="my_own_title_rateme">Bewerte die App</string>
+    <string name="my_own_message_rateme">Gefällt dir die App? Ich würde mich freuen, wenn du die App kurz im Google Play-Store bewerten könntest! Ein kurzes Feedback würde mich sehr freuen!
+    Hast du vielleicht noch Verbesserungsvorschläge? Schick mir eine Mail! Danke für die Unterstützung!</string>
+
+    <!--Startseite-->
+    <string name="NachrichtenzumTag"><u>Nachrichten zum Tag:</u></string>
+
+
+    <!--für den Vertretungsplan-->
+    <string name="Information">Information</string>
+    <string name="Stunde">Stunde</string>
+    <string name="Klasse">Klasse</string>
+    <string name="Fach">Fach</string>
+    <string name="Raum">Raum</string>
+    <string name="stattFach">statt Fach</string>
+    <string name="stattRaum">statt Raum</string>
+    <string name="Art">Art</string>
+    <string name="Tag">Tag</string>
+
+
+    <!--Vertretungsplan Strings-->
+    <!--für die Wochenauswahl-->
+    <string name="AlleKlassen">Alle Klassen</string>
+    <string name="WähleeineWoche">Wähle eine Woche</string>
+    <string name="aktuelleWoche">aktuelle Woche</string>
+    <string name="nächsteWoche">nächste Woche</string>
+    <string name="Vertretungsplan">Vertretungsplan</string>
+
+
+    <!--für die Klassenauswahl-->
+    <string name="klassenauswahlh">Klassenauswahl</string>
+    <string name="InfofürDeineKlasse">Deine Klasse kannst du in den Einstellungen ändern.</string>
+    <string name="AlleKlassenInfo">Du solltest eine schnelle Internet-Verbindung haben.</string>
+    <string name="DeineKlasse">Deine Klasse</string>
+
+
+    <!--für die Einstellungen-->
+    <string name="Klassenauswahl">Klassenauswahl:</string>
+    <string name="Klassenauswahlsettings">Hier kannst du deine Klasse einstellen. (Ich überwache für dich ob es neue Vertretungen gibt!)</string>
+    <string name="Einstellungen">Einstellungen</string>
+
+    <!--für den Notifikation-Service-->
+    <string name="vertretungsplanupdate">Neue Vertretungen</string>
+    <string name="vertretungsplanupdatet">Für deine Klasse gibt es neue Vertretungen! Guck sie dir an!</string>
+
+
+    <!--für die Überseite-->
+    <string name="Über">Über</string>
+
+
+    <!--für den Speiseplan-->
+    <string name="Speiseplan">Speiseplan</string>
+
+    <!--für den Speiseplan-->
+    <string name="Wochenplan">Wochenplan</string>
+
+    <!--für die Überseite-->
+    <string name="Reporte">Für <b>Vorschläge</b>, <b>Anmerkungen</b> oder <b>Hilfe</b> bitte eine Email an:</string>
+    <string name="Email">vertretungsplan.app@hochrad.de</string>
+    <string name="Recht">Alle Informationen, die in der App gezeigt werden sind von der Webseite des <a href="http://bit.ly/1LrQbno">Gymnasium Hochrad.</a></string>
+    <string name="Entwickler">Die App wurde und wird 2015 von <b>Finn von Holten</b> vom Gymnasium Hochrad entwickelt, gepflegt und designt.</string>
+
+
+
+    <!--anderes-->
+    <string name="bald">Bald Verfügbar</string>
+    <string name="Zurück">Zurück</string>
+    <string name="Einstellungengespeichert">NEU: Jetzt überwache ich die Vertretungen der Klasse:</string>
+    <string name="aktuelleÜberwachung">Aktuell überwache ich die Vertretungen der Klasse:</string>
+
+
+    <string name="Laden">Überprüfe deine Verbindung!</string>
+    <string name="retry">Retry!</string>
+    <string name="appwidget_text">Kommt Bald!</string>
+    <string name="add_widget">Add widget</string>
+
+    <string name="stundenzeiten">Stundenzeiten</string>
+    <string name="Startseite">Startseite</string>
+
+    <string-array name="WähleWoche">
+        <item>Wähle eine Woche</item>
+        <item>aktuelle Woche</item>
+    </string-array>
+
+    <string-array name="Zeiten">
+        <item>1.    Stunde:     07:50 – 08:35</item>
+        <item>2.    Stunde:     08:35 – 09:20</item>
+        <item>  Pause:      09:20 – 09:45</item>
+        <item>3.    Stunde:     09:45 – 10:30</item>
+        <item>4.    Stunde:     10:30 – 11:15</item>
+        <item>  Pause:      11:15 – 11:40</item>
+        <item>5.    Stunde:     11:40 – 12:25</item>
+        <item>  Pause:      12:25 – 12:30</item>
+        <item>6.    Stunde:     12:30 – 13:15</item>
+        <item>  Pause:      13:15 – 13:25</item>
+        <item>7.    Stunde:     13:25 – 14:10</item>
+        <item>  Pause:      14:10 – 14:15</item>
+        <item>8.    Stunde:     14:15 – 15:00</item>
+        <item>9.    Stunde:     15:00 – 15:45</item>
+        <item>10.   Stunde:     15:45 – 16:30</item>
+        <item>11.   Stunde:     16:30 – 17:15</item>
+        <item>Schulschluss!</item>
+    </string-array>
+
+
+</resources>

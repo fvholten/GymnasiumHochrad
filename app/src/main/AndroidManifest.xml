@@ -1,0 +1,92 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="de.hochrad.hochradapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:allowBackup="true">
+
+        <receiver
+            android:name=".service.BootCompleted"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".activites.startseite.MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activites.einstellungen.EinstellungenActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="Einstellungen"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <!--<service android:name=".service.Service" >-->
+        <!--</service>-->
+
+        <activity
+            android:name=".activites.UeberActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="Über mich"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".activites.WochenplanActivtiy"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="Wochenplan"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".activites.vertretungsplan.VertretungsplanActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="Vertretungsplan"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+            android:name=".activites.StundenzeitenActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="Stundenzeiten"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".activites.startseite.MainActivityLoadscreenActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="Loadscreen"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".activites.einstellungen.EinstellungenActivityLoadscreenActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="Loadscreen"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".activites.vertretungsplan.VertretungsplanActivityLoadscreenActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="Loadscreen"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+    </application>
+
+</manifest>
