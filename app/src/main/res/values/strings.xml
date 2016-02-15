@@ -14,8 +14,8 @@
     <string name="drawer_close">Schließe die Navigationsleiste</string>
     
     <string name="my_own_title_rateme">Bewerte die App</string>
-    <string name="my_own_message_rateme">Gefällt dir die App? Ich würde mich freuen, wenn du die App kurz im Google Play-Store bewerten könntest! Ein kurzes Feedback würde mich sehr freuen!
-    Hast du vielleicht noch Verbesserungsvorschläge? Schick mir eine Mail! Danke für die Unterstützung!</string>
+    <string name="my_own_message_rateme">Gefällt dir die App? Ich würde mich freuen, wenn du die App im Google Play-Store bewerten könntest. Ein kurzes Feedback würde mich sehr freuen!
+        Schick mir eine Mail mit deinen Verbesserungsvorschlägen! Danke für die Unterstützung und viel Spaß mit der App!</string>
 
     <!--Startseite-->
     <string name="NachrichtenzumTag"><u>Nachrichten zum Tag:</u></string>
@@ -73,7 +73,7 @@
     <string name="Reporte">Für <b>Vorschläge</b>, <b>Anmerkungen</b> oder <b>Hilfe</b> bitte eine Email an:</string>
     <string name="Email">vertretungsplan.app@hochrad.de</string>
     <string name="Recht">Alle Informationen, die in der App gezeigt werden sind von der Webseite des <a href="http://bit.ly/1LrQbno">Gymnasium Hochrad.</a></string>
-    <string name="Entwickler">Die App wurde und wird 2015 von <b>Finn von Holten</b> vom Gymnasium Hochrad entwickelt, gepflegt und designt.</string>
+    <string name="Entwickler">Die App wird von <b>Finn von Holten</b> vom Gymnasium Hochrad entwickelt, gepflegt und designt.</string>
 
 
 

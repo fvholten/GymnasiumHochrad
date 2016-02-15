@@ -13,9 +13,10 @@ import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import de.hochrad.hochradapp.BuildConfig;
 import de.hochrad.hochradapp.R;
-import de.hochrad.hochradapp.activites.startseite.MainActivity;
 import de.hochrad.hochradapp.activites.einstellungen.EinstellungenActivity;
+import de.hochrad.hochradapp.activites.startseite.MainActivity;
 import de.hochrad.hochradapp.activites.vertretungsplan.VertretungsplanActivity;
 
 public class UeberActivity extends AppCompatActivity
@@ -47,6 +48,10 @@ public class UeberActivity extends AppCompatActivity
 
         HochradWebseite = (TextView) findViewById(R.id.Recht);
         HochradWebseite.setMovementMethod(LinkMovementMethod.getInstance());
+
+        String versionName = BuildConfig.VERSION_NAME;
+        TextView textView = (TextView) findViewById(R.id.Version);
+        textView.setText("Version: " + versionName);
     }
 
 

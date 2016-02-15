@@ -14,6 +14,13 @@
     tools:showIn="@layout/app_bar_ueber">
 
     <TextView
+        android:id="@+id/Version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:textColor="#838383" />
+
+    <TextView
         android:id="@+id/Recht"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

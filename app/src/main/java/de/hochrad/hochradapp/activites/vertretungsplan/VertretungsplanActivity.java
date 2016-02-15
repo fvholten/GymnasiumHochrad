@@ -21,18 +21,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import de.hochrad.hochradapp.domain.Vertretungsplan;
-import de.hochrad.hochradapp.hilfsfunktionen.ConnectionTest;
-import de.hochrad.hochradapp.activites.einstellungen.EinstellungenActivity;
-import de.hochrad.hochradapp.activites.startseite.MainActivity;
+import de.hochrad.hochradapp.R;
 import de.hochrad.hochradapp.activites.StundenzeitenActivity;
 import de.hochrad.hochradapp.activites.UeberActivity;
 import de.hochrad.hochradapp.activites.WochenplanActivtiy;
-import de.hochrad.hochradapp.loader.KlassenLadenTask;
-import de.hochrad.hochradapp.loader.KlassenLadenTaskCallBack;
+import de.hochrad.hochradapp.activites.einstellungen.EinstellungenActivity;
+import de.hochrad.hochradapp.activites.startseite.MainActivity;
+import de.hochrad.hochradapp.domain.Vertretungsplan;
+import de.hochrad.hochradapp.hilfsfunktionen.ConnectionTest;
 import de.hochrad.hochradapp.hilfsfunktionen.Logic;
 import de.hochrad.hochradapp.hilfsfunktionen.Optionen;
-import de.hochrad.hochradapp.R;
+import de.hochrad.hochradapp.loader.KlassenLadenTask;
+import de.hochrad.hochradapp.loader.KlassenLadenTaskCallBack;
 import de.hochrad.hochradapp.loader.VertretungsplanLadenTask;
 import de.hochrad.hochradapp.loader.VertretungsplanLadenTaskCallBack;
 import de.hochrad.hochradapp.loader.WochenLadenTask;
@@ -212,7 +212,13 @@ public class VertretungsplanActivity extends AppCompatActivity
             }
             klasse.setText(vertretungsplan.Klasse.toString());
             RecyclerView vertretungen = (RecyclerView) findViewById(R.id.vertretungsplan);
-            vertretungen.setAdapter(new VertretungsplanAdapter(context, vertretungsplan));
+            if (vertretungsplan.Vertretungen.size() != 0) {
+                vertretungen.setAdapter(new VertretungsplanAdapter(context, vertretungsplan));
+            } else {
+                TextView keineVertretungen = (TextView) findViewById(R.id.keineVertretungen);
+                keineVertretungen.setVisibility(View.VISIBLE);
+                keineVertretungen.setText("Aktuell gibt es keine Vertretungen.");
+            }
             vertretungen.setLayoutManager(new LinearLayoutManager(context));
 
             Button back = (Button) findViewById(R.id.back);

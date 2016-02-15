@@ -11,6 +11,7 @@ import de.hochrad.hochradapp.domain.Klasse;
 import de.hochrad.hochradapp.domain.Oberstufenklasse;
 import de.hochrad.hochradapp.domain.Vertretung;
 import de.hochrad.hochradapp.domain.Art;
+import de.hochrad.hochradapp.domain.andere_Klasse;
 import de.hochrad.hochradapp.domain.Fach;
 import de.hochrad.hochradapp.domain.Information;
 import de.hochrad.hochradapp.domain.Vertretungsplan;
@@ -89,8 +90,9 @@ public class ParseUtilities {
         }
         if (text.startsWith("Klasse")) {
             return new normale_Klasse(Integer.parseInt(text.substring(7,8)), text.substring(8));
+        }else {
+            return new andere_Klasse(text);
         }
-        return null;
     }
 
     /*
