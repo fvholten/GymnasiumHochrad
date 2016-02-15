@@ -12,7 +12,7 @@ public class Vertretungsplan {
 //Da ich den Vertretungsplan nur Klassenweise laden, ergibt sich eine globale Klasse
     public Klasse Klasse;
 
-    public List<Vertretung> Vertretungen = new ArrayList<Vertretung>();
+    public List<Vertretung> Vertretungen = new ArrayList<>();
 
     public void Hinzufügen(Vertretung neuesElement) {
         Vertretungen.add(neuesElement);
