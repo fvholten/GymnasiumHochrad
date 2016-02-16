@@ -89,8 +89,8 @@ public class ParseUtilities {
             return new Vorstufenklasse(text.substring(8));
         }
         if (text.startsWith("Klasse")) {
-            return new normale_Klasse(Integer.parseInt(text.substring(7,8)), text.substring(8));
-        }else {
+            return new normale_Klasse(Integer.parseInt(text.substring(7, 8)), text.substring(8));
+        } else {
             return new andere_Klasse(text);
         }
     }
@@ -164,7 +164,7 @@ public class ParseUtilities {
     Vertretungsplanes.
      */
 
-
+// TODO Es wird nur die erste Nachricht des Tages gelesen... wie kann ich alle lesen?????
     public static List<String> ParseNachrichtenDesTages(Document doc) {
         ArrayList<String> NachrichtenzumTag = new ArrayList<>();
         for (Element element : doc.select("table")) {

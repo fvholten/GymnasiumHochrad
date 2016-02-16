@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
+import android.support.annotation.Nullable;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -14,7 +15,12 @@ import de.hochrad.hochradapp.R;
 import de.hochrad.hochradapp.activites.startseite.MainActivity;
 //TODO
 
-public class Service /*extends android.app.Service*/ {
+public class Service extends android.app.Service {
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
 
 //    Context context = this;
 //    boolean x;

@@ -39,6 +39,7 @@ import de.hochrad.hochradapp.loader.WochenLadenTask;
 import de.hochrad.hochradapp.loader.WochenLadenTaskCallBack;
 import de.hochrad.hochradapp.loader.WochennummerLadenTask;
 import de.hochrad.hochradapp.loader.WochennummerLadenTaskCallBack;
+import de.hochrad.hochradapp.service.Vertretungsplan_vertretung_tofile;
 
 public class VertretungsplanActivity extends AppCompatActivity
         implements
@@ -154,7 +155,6 @@ public class VertretungsplanActivity extends AppCompatActivity
         if (klassen == null) {
             startActivity();
         } else {
-            Toast.makeText(context, "Lade...", Toast.LENGTH_SHORT).show();
             ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
             progressBar.setVisibility(View.INVISIBLE);
 
