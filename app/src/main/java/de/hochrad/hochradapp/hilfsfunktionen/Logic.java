@@ -1,9 +1,6 @@
 package de.hochrad.hochradapp.hilfsfunktionen;
 
 
-import java.util.Calendar;
-import java.util.Locale;
-
 public class Logic {
 
     public static Integer ToInteger(String wochennummer) {
@@ -21,21 +18,5 @@ public class Logic {
         } else {
             return "" + i;
         }
-    }
-
-    public static Boolean Wochenende() {
-        Calendar calendar = Calendar.getInstance(Locale.GERMAN);
-        int dayofweek = calendar.get(Calendar.DAY_OF_WEEK);
-        return (dayofweek == 1 || dayofweek == 7);
-    }
-
-    public static Integer GibStunde() {
-        Calendar calendar = Calendar.getInstance(Locale.GERMAN);
-        return calendar.get(Calendar.HOUR_OF_DAY);
-    }
-
-    public static Integer GibMinute() {
-        Calendar calendar = Calendar.getInstance(Locale.GERMAN);
-        return calendar.get(Calendar.MINUTE);
     }
 }

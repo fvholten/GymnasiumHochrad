@@ -41,8 +41,8 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
-        <!--<service android:name=".service.Service" >-->
-        <!--</service>-->
+        <service android:name=".service.Service" >
+        </service>
 
         <activity
             android:name=".activites.UeberActivity"

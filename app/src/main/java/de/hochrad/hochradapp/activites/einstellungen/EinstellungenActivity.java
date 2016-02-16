@@ -83,7 +83,7 @@ public class EinstellungenActivity extends AppCompatActivity
             klassenspinner = (Spinner) findViewById(R.id.klassenauswahlspinner);
             klassenspinner.setAdapter(klassenauswahlAdapter);
             auswahl = (TextView) findViewById(R.id.wahl);
-            auswahl.setText(getString(R.string.aktuelleÜberwachung) + klassenspinner.getItemAtPosition(optionen.getTeilseite()).toString());
+            auswahl.setText(getString(R.string.aktuelleÜberwachung) + klassenspinner.getItemAtPosition(optionen.getFile()).toString());
             klassenspinner.setOnItemSelectedListener(
                     new AdapterView.OnItemSelectedListener() {
                         @Override
@@ -92,8 +92,8 @@ public class EinstellungenActivity extends AppCompatActivity
                                 return;
                             }
                             Toast.makeText(context, "Gespeichert.", Toast.LENGTH_SHORT).show();
-                            optionen.putTeilseite(positionklassenauswahl, "auswahl");
-                            auswahl.setText(getString(R.string.Einstellungengespeichert) + klassenspinner.getItemAtPosition(optionen.getTeilseite()).toString());
+                            optionen.putFile(positionklassenauswahl, "auswahl");
+                            auswahl.setText(getString(R.string.Einstellungengespeichert) + klassenspinner.getItemAtPosition(optionen.getFile()).toString());
                         }
 
                         @Override

@@ -16,17 +16,19 @@ import com.kobakei.ratethisapp.RateThisApp;
 
 import java.util.List;
 
-import de.hochrad.hochradapp.hilfsfunktionen.ConnectionTest;
+import de.hochrad.hochradapp.R;
 import de.hochrad.hochradapp.activites.StundenzeitenActivity;
 import de.hochrad.hochradapp.activites.UeberActivity;
 import de.hochrad.hochradapp.activites.WochenplanActivtiy;
 import de.hochrad.hochradapp.activites.einstellungen.EinstellungenActivity;
 import de.hochrad.hochradapp.activites.vertretungsplan.VertretungsplanActivity;
+import de.hochrad.hochradapp.hilfsfunktionen.ConnectionTest;
+import de.hochrad.hochradapp.hilfsfunktionen.Optionen;
 import de.hochrad.hochradapp.loader.NachrichtenDesTagesLadenTask;
 import de.hochrad.hochradapp.loader.NachrichtenDesTagesLadenTaskCallBack;
-import de.hochrad.hochradapp.R;
 import de.hochrad.hochradapp.loader.WochennummerLadenTask;
 import de.hochrad.hochradapp.loader.WochennummerLadenTaskCallBack;
+import de.hochrad.hochradapp.service.Service;
 
 public class MainActivity extends AppCompatActivity
         implements
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity
         NachrichtenDesTagesLadenTaskCallBack {
 
     Context context = this;
+
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -46,9 +49,9 @@ public class MainActivity extends AppCompatActivity
         RateThisApp.init(config);
         RateThisApp.onStart(context);
         RateThisApp.showRateDialogIfNeeded(context);
+// NavigationDrawer und ToolBar!!!!
 
         setContentView(R.layout.activity_main);
-// NavigationDrawer und ToolBar!!!!
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -73,7 +76,7 @@ public class MainActivity extends AppCompatActivity
     public void WochennummerLaden(boolean mitklassenauswahl, int klassenauswahl, int wochenauswahl, Integer wochennummer) {
         if (wochennummer == null) {
             startActivity();
-        }else {
+        } else {
             new NachrichtenDesTagesLadenTask(wochennummer, this).execute();
         }
     }
@@ -81,7 +84,7 @@ public class MainActivity extends AppCompatActivity
     public void NachrichtenDesTages(List<String> newsDerWoche) {
         if (newsDerWoche == null) {
             startActivity();
-        }else {
+        } else {
             ArrayAdapter<String> NachrichtenzumTagInhaltAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1);
 
             NachrichtenzumTagInhaltAdapter.addAll(newsDerWoche);

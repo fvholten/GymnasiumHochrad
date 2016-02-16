@@ -164,7 +164,6 @@ public class ParseUtilities {
     Vertretungsplanes.
      */
 
-// TODO Es wird nur die erste Nachricht des Tages gelesen... wie kann ich alle lesen?????
     public static List<String> ParseNachrichtenDesTages(Document doc) {
         ArrayList<String> NachrichtenzumTag = new ArrayList<>();
         for (Element element : doc.select("table")) {
@@ -187,7 +186,6 @@ public class ParseUtilities {
                                                 NachrichtenzumTag.add(b.text());
                                             }
                                         }
-                                        return NachrichtenzumTag;
                                     }
                                 }
                             }

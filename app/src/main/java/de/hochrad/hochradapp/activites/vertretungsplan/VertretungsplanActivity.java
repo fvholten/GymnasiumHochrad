@@ -19,7 +19,6 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import de.hochrad.hochradapp.R;
 import de.hochrad.hochradapp.activites.StundenzeitenActivity;
@@ -39,7 +38,6 @@ import de.hochrad.hochradapp.loader.WochenLadenTask;
 import de.hochrad.hochradapp.loader.WochenLadenTaskCallBack;
 import de.hochrad.hochradapp.loader.WochennummerLadenTask;
 import de.hochrad.hochradapp.loader.WochennummerLadenTaskCallBack;
-import de.hochrad.hochradapp.service.Vertretungsplan_vertretung_tofile;
 
 public class VertretungsplanActivity extends AppCompatActivity
         implements
@@ -195,16 +193,18 @@ public class VertretungsplanActivity extends AppCompatActivity
             if (mitklassenauswahl) {
                 new VertretungsplanLadenTask(wochennummer + wochenauswahl, this).execute(Logic.fiveDigits(klassenauswahl));
             } else {
-                new VertretungsplanLadenTask(wochennummer + wochenauswahl, this).execute(Logic.fiveDigits(optionen.getTeilseite()));
+                new VertretungsplanLadenTask(wochennummer + wochenauswahl, this).execute(Logic.fiveDigits(optionen.getFile()));
             }
         }
     }
 
     @Override
-    public void VertretungsplanLaden(Vertretungsplan vertretungsplan) {
+    public void VertretungsplanLaden(int hash, Vertretungsplan vertretungsplan) {
         if (vertretungsplan == null) {
             startActivity();
         } else {
+            optionen = new Optionen(context, "hashcode");
+            optionen.putFile(hash, "hashcode");
             TextView klasse = (TextView) findViewById(R.id.Klasse);
             if (vertretungsplan.Klasse == null) {
                 startActivity();
