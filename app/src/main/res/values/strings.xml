@@ -12,7 +12,7 @@
 
     <string name="drawer_open">Öffne die Navigationsleiste</string>
     <string name="drawer_close">Schließe die Navigationsleiste</string>
-    
+
     <string name="my_own_title_rateme">Bewerte die App</string>
     <string name="my_own_message_rateme">Gefällt dir die App? Ich würde mich freuen, wenn du die App im Google Play-Store bewerten könntest. Ein kurzes Feedback würde mich sehr freuen!
         Schick mir eine Mail mit deinen Verbesserungsvorschlägen! Danke für die Unterstützung und viel Spaß mit der App!</string>
@@ -55,9 +55,7 @@
     <string name="Einstellungen">Einstellungen</string>
 
     <!--für den Notifikation-Service-->
-    <string name="vertretungsplanupdate">Neue Vertretungen</string>
-    <string name="vertretungsplanupdatet">Für deine Klasse gibt es neue Vertretungen! Guck sie dir an!</string>
-
+    <string name="vertretungsplanupdate">Neue Vertretungen für deine Klasse</string>
 
     <!--für die Überseite-->
     <string name="Über">Über</string>
@@ -76,7 +74,6 @@
     <string name="Entwickler">Die App wird von <b>Finn von Holten</b> vom Gymnasium Hochrad entwickelt, gepflegt und designt.</string>
 
 
-
     <!--anderes-->
     <string name="bald">Bald Verfügbar</string>
     <string name="Zurück">Zurück</string>
@@ -91,6 +88,10 @@
 
     <string name="stundenzeiten">Stundenzeiten</string>
     <string name="Startseite">Startseite</string>
+    <string name="NotificationSwitch">Benachrichtigungen</string>
+    <string name="NotificationTextView">Wie oft soll ich den Vertretungsplan überprüfen?</string>
+    <string name="AllexStunden2">Stunden.</string>
+    <string name="AllexStunden">Alle</string>
 
     <string-array name="WähleWoche">
         <item>Wähle eine Woche</item>

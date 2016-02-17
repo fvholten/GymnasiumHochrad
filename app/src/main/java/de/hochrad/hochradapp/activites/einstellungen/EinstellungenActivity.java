@@ -9,14 +9,22 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.File;
 
 import de.hochrad.hochradapp.hilfsfunktionen.ConnectionTest;
 import de.hochrad.hochradapp.activites.startseite.MainActivity;
@@ -26,7 +34,7 @@ import de.hochrad.hochradapp.activites.WochenplanActivtiy;
 import de.hochrad.hochradapp.activites.vertretungsplan.VertretungsplanActivity;
 import de.hochrad.hochradapp.loader.KlassenLadenTask;
 import de.hochrad.hochradapp.loader.KlassenLadenTaskCallBack;
-import de.hochrad.hochradapp.hilfsfunktionen.Optionen;
+import de.hochrad.hochradapp.hilfsfunktionen.FileWR;
 import de.hochrad.hochradapp.R;
 
 public class EinstellungenActivity extends AppCompatActivity
@@ -35,7 +43,7 @@ public class EinstellungenActivity extends AppCompatActivity
         KlassenLadenTaskCallBack {
 
     TextView auswahl;
-    Optionen optionen;
+    FileWR fileWR;
 
     Spinner klassenspinner;
     ArrayAdapter<String> klassenauswahlAdapter;
@@ -61,6 +69,45 @@ public class EinstellungenActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        Switch notificationswitch = (Switch) findViewById(R.id.switchNotifications);
+        fileWR = new FileWR();
+        if (fileWR.ladeFile(getFilesDir() + File.separator + "switch") == 2) {
+            notificationswitch.setChecked(true);
+            LinearLayout l = (LinearLayout) findViewById(R.id.SwitchON);
+            l.setVisibility(View.VISIBLE);
+            notificationswitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    fileWR = new FileWR();
+                    if (isChecked) {
+
+                        fileWR.writeFile(2, getFilesDir() + File.separator + "switch");
+                        EditText editText = (EditText) findViewById(R.id.editNotification);
+                        editText.addTextChangedListener(new TextWatcher() {
+
+                            @Override
+                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                            }
+
+                            @Override
+                            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable s) {
+                                if (!s.toString().equals(""))
+                                    fileWR.writeFile(Integer.parseInt(s.toString()), getFilesDir() + File.separator + "servicezeit");
+                            }
+                        });
+                    } else {
+                        fileWR = new FileWR();
+                        fileWR.writeFile(1, getFilesDir() + File.separator + "switch");
+                    }
+                }
+            });
+        } else {
+            notificationswitch.setChecked(false);
+        }
 //        In der App
         if (!ConnectionTest.isOnline(context)) {
             startActivity();
@@ -73,7 +120,7 @@ public class EinstellungenActivity extends AppCompatActivity
         if (klassen == null) {
             startActivity();
         } else {
-            optionen = new Optionen(context, "auswahl");
+            fileWR = new FileWR();
             ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
             progressBar.setVisibility(View.INVISIBLE);
             klassenauswahlAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item);
@@ -83,7 +130,8 @@ public class EinstellungenActivity extends AppCompatActivity
             klassenspinner = (Spinner) findViewById(R.id.klassenauswahlspinner);
             klassenspinner.setAdapter(klassenauswahlAdapter);
             auswahl = (TextView) findViewById(R.id.wahl);
-            auswahl.setText(getString(R.string.aktuelleÜberwachung) + klassenspinner.getItemAtPosition(optionen.getFile()).toString());
+            auswahl.setText(getString(R.string.aktuelleÜberwachung) + klassenspinner.getItemAtPosition(fileWR.ladeFile(getFilesDir() + File.separator + "auswahl")).toString());
+
             klassenspinner.setOnItemSelectedListener(
                     new AdapterView.OnItemSelectedListener() {
                         @Override
@@ -92,8 +140,9 @@ public class EinstellungenActivity extends AppCompatActivity
                                 return;
                             }
                             Toast.makeText(context, "Gespeichert.", Toast.LENGTH_SHORT).show();
-                            optionen.putFile(positionklassenauswahl, "auswahl");
-                            auswahl.setText(getString(R.string.Einstellungengespeichert) + klassenspinner.getItemAtPosition(optionen.getFile()).toString());
+                            fileWR.writeFile(positionklassenauswahl, getFilesDir() + File.separator + "auswahl");
+                            auswahl.setText(getString(R.string.Einstellungengespeichert) +
+                                    klassenspinner.getItemAtPosition(fileWR.ladeFile(getFilesDir() + File.separator + "auswahl")).toString());
                         }
 
                         @Override

@@ -23,7 +23,6 @@ import de.hochrad.hochradapp.activites.WochenplanActivtiy;
 import de.hochrad.hochradapp.activites.einstellungen.EinstellungenActivity;
 import de.hochrad.hochradapp.activites.vertretungsplan.VertretungsplanActivity;
 import de.hochrad.hochradapp.hilfsfunktionen.ConnectionTest;
-import de.hochrad.hochradapp.hilfsfunktionen.Optionen;
 import de.hochrad.hochradapp.loader.NachrichtenDesTagesLadenTask;
 import de.hochrad.hochradapp.loader.NachrichtenDesTagesLadenTaskCallBack;
 import de.hochrad.hochradapp.loader.WochennummerLadenTask;
@@ -50,11 +49,12 @@ public class MainActivity extends AppCompatActivity
         RateThisApp.onStart(context);
         RateThisApp.showRateDialogIfNeeded(context);
 // NavigationDrawer und ToolBar!!!!
-
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        startService(new Intent(context, Service.class));
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity
         if (newsDerWoche == null) {
             startActivity();
         } else {
-            ArrayAdapter<String> NachrichtenzumTagInhaltAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1);
+            ArrayAdapter<String> NachrichtenzumTagInhaltAdapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1);
 
             NachrichtenzumTagInhaltAdapter.addAll(newsDerWoche);
             GridView NachrichtenzumTagInhalt = (GridView) findViewById(R.id.NachrichtenzumTagInhalt);

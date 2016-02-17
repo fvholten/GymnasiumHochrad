@@ -20,6 +20,8 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.io.File;
+
 import de.hochrad.hochradapp.R;
 import de.hochrad.hochradapp.activites.StundenzeitenActivity;
 import de.hochrad.hochradapp.activites.UeberActivity;
@@ -29,7 +31,7 @@ import de.hochrad.hochradapp.activites.startseite.MainActivity;
 import de.hochrad.hochradapp.domain.Vertretungsplan;
 import de.hochrad.hochradapp.hilfsfunktionen.ConnectionTest;
 import de.hochrad.hochradapp.hilfsfunktionen.Logic;
-import de.hochrad.hochradapp.hilfsfunktionen.Optionen;
+import de.hochrad.hochradapp.hilfsfunktionen.FileWR;
 import de.hochrad.hochradapp.loader.KlassenLadenTask;
 import de.hochrad.hochradapp.loader.KlassenLadenTaskCallBack;
 import de.hochrad.hochradapp.loader.VertretungsplanLadenTask;
@@ -48,7 +50,7 @@ public class VertretungsplanActivity extends AppCompatActivity
         KlassenLadenTaskCallBack {
 
     Context context = this;
-    Optionen optionen;
+    FileWR fileWR;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -92,7 +94,7 @@ public class VertretungsplanActivity extends AppCompatActivity
             wochenauswahlAdapterDeineKlasse.addAll(wochen);
 
 // DEINE KLASSE
-            optionen = new Optionen(context, "auswahl");
+            fileWR = new FileWR();
             Spinner deineKlasse = (Spinner) findViewById(R.id.deineKlasse);
             deineKlasse.setAdapter(wochenauswahlAdapterDeineKlasse);
             deineKlasse.setOnItemSelectedListener
@@ -193,7 +195,7 @@ public class VertretungsplanActivity extends AppCompatActivity
             if (mitklassenauswahl) {
                 new VertretungsplanLadenTask(wochennummer + wochenauswahl, this).execute(Logic.fiveDigits(klassenauswahl));
             } else {
-                new VertretungsplanLadenTask(wochennummer + wochenauswahl, this).execute(Logic.fiveDigits(optionen.getFile()));
+                new VertretungsplanLadenTask(wochennummer + wochenauswahl, this).execute(Logic.fiveDigits(fileWR.ladeFile(getFilesDir()+File.separator+"auswahl")));
             }
         }
     }
@@ -203,8 +205,7 @@ public class VertretungsplanActivity extends AppCompatActivity
         if (vertretungsplan == null) {
             startActivity();
         } else {
-            optionen = new Optionen(context, "hashcode");
-            optionen.putFile(hash, "hashcode");
+            fileWR.writeFile(hash, getFilesDir()+ File.separator+"vertretungsplanhash");
             TextView klasse = (TextView) findViewById(R.id.Klasse);
             if (vertretungsplan.Klasse == null) {
                 startActivity();

@@ -11,7 +11,6 @@ import java.io.IOException;
 
 import de.hochrad.hochradapp.domain.Vertretungsplan;
 import de.hochrad.hochradapp.hilfsfunktionen.Logic;
-import de.hochrad.hochradapp.hilfsfunktionen.Optionen;
 
 public class VertretungsplanLadenTask extends AsyncTask<String, Void, Vertretungsplan> {
 
