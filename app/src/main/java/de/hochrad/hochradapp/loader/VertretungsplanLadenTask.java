@@ -9,6 +9,7 @@ import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 
+import de.hochrad.hochradapp.domain.Vertretung;
 import de.hochrad.hochradapp.domain.Vertretungsplan;
 import de.hochrad.hochradapp.hilfsfunktionen.Logic;
 
@@ -17,6 +18,7 @@ public class VertretungsplanLadenTask extends AsyncTask<String, Void, Vertretung
     VertretungsplanLadenTaskCallBack callBack;
     int wochennummer;
     int hashcode;
+    Document doc;
 
     public VertretungsplanLadenTask(int wochennummer, VertretungsplanLadenTaskCallBack callBack) {
         this.callBack = callBack;
@@ -25,24 +27,32 @@ public class VertretungsplanLadenTask extends AsyncTask<String, Void, Vertretung
     @Override
     protected Vertretungsplan doInBackground(String... params) {
         Vertretungsplan vertretungsplan = new Vertretungsplan();
-        String url = "http://www.gymnasium-hochrad.de/Vertretungsplan/Vertretungsplan_Internet/" + Logic.twoDigits(wochennummer) + "/w/w" + params[0] + ".htm";
-        Connection connection = Jsoup.connect(url);
-        Document doc;
-        try {
-            doc = connection.get();
+        if (!isCancelled()) {
+            String url = "http://www.gymnasium-hochrad.de/Vertretungsplan/Vertretungsplan_Internet/" + Logic.twoDigits(wochennummer) + "/w/w" + params[0] + ".htm";
+            Connection connection = Jsoup.connect(url);
+            try {
+                doc = connection.get();
+            } catch (IOException e) {
+                return null;
+            }
             //FÜR DEN SERVICE
             hashcode = doc.text().hashCode();
-
             ParseUtilities.ParseVertretungsplan(doc, vertretungsplan);
-            if (vertretungsplan == null) {
-                return null;
-            }else {
-                return vertretungsplan;
-            }
-        } catch (IOException e) {
-            return null;
+            return vertretungsplan;
+        } else {
+            Vertretung vertretung = new Vertretung();
+            vertretung.Wochentag = ParseUtilities.ToWochentag("error");
+            vertretung.Stunde = ParseUtilities.ToStunde("error");
+            vertretung.Art = ParseUtilities.ToArt("error");
+            vertretung.Fach = ParseUtilities.ToFach("error");
+            vertretung.Raum = ParseUtilities.ToRaum("error");
+            vertretung.statt_Fach = ParseUtilities.ToFach("error");
+            vertretung.statt_Raum = ParseUtilities.ToRaum("error");
+            vertretung.Informationen = ParseUtilities.ToInformation("error");
+            vertretung.Klasse = ParseUtilities.ToKlasse("error");
+            vertretungsplan.Hinzufügen(vertretung);
+            return vertretungsplan;
         }
-
     }
     protected void onPostExecute(Vertretungsplan result) {
         callBack.VertretungsplanLaden(hashcode, result);

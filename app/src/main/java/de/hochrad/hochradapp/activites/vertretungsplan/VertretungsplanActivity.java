@@ -23,15 +23,11 @@ import android.widget.TextView;
 import java.io.File;
 
 import de.hochrad.hochradapp.R;
-import de.hochrad.hochradapp.activites.StundenzeitenActivity;
-import de.hochrad.hochradapp.activites.UeberActivity;
-import de.hochrad.hochradapp.activites.WochenplanActivtiy;
-import de.hochrad.hochradapp.activites.einstellungen.EinstellungenActivity;
-import de.hochrad.hochradapp.activites.startseite.MainActivity;
+import de.hochrad.hochradapp.activites.NavigationDrawerNavigate;
 import de.hochrad.hochradapp.domain.Vertretungsplan;
 import de.hochrad.hochradapp.hilfsfunktionen.ConnectionTest;
-import de.hochrad.hochradapp.hilfsfunktionen.Logic;
 import de.hochrad.hochradapp.hilfsfunktionen.FileWR;
+import de.hochrad.hochradapp.hilfsfunktionen.Logic;
 import de.hochrad.hochradapp.loader.KlassenLadenTask;
 import de.hochrad.hochradapp.loader.KlassenLadenTaskCallBack;
 import de.hochrad.hochradapp.loader.VertretungsplanLadenTask;
@@ -51,6 +47,11 @@ public class VertretungsplanActivity extends AppCompatActivity
 
     Context context = this;
     FileWR fileWR;
+    NavigationDrawerNavigate navigationDrawerNavigate;
+    WochenLadenTask wochenLadenTask;
+    WochennummerLadenTask wochennummerLadenTask;
+    KlassenLadenTask klassenLadenTask;
+    VertretungsplanLadenTask vertretungsplanLadenTask;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -74,11 +75,12 @@ public class VertretungsplanActivity extends AppCompatActivity
         if (!(ConnectionTest.isOnline(context))) {
             startActivity();
         }
-        new WochenLadenTask(this).execute();
+        wochenLadenTask = new WochenLadenTask(this);
+        wochenLadenTask.execute();
     }
 
     @Override
-    public void WochenLaden(String[] wochen) {
+    public void WochenLaden(final String[] wochen) {
 
         if (wochen == null) {
             startActivity();
@@ -107,7 +109,8 @@ public class VertretungsplanActivity extends AppCompatActivity
                             if (!(ConnectionTest.isOnline(context))) {
                                 startActivity();
                             }
-                            new WochennummerLadenTask(false, 0, selectedItem - 1, VertretungsplanActivity.this).execute();
+                            wochennummerLadenTask = new WochennummerLadenTask(false, 0, selectedItem - 1, VertretungsplanActivity.this);
+                            wochennummerLadenTask.execute();
                         }
 
                         @Override
@@ -137,7 +140,8 @@ public class VertretungsplanActivity extends AppCompatActivity
                              if (!(ConnectionTest.isOnline(context))) {
                                  startActivity();
                              }
-                             new KlassenLadenTask(selectedItem - 1, VertretungsplanActivity.this).execute();
+                             klassenLadenTask = new KlassenLadenTask(selectedItem - 1, VertretungsplanActivity.this);
+                             klassenLadenTask.execute();
                          }
 
                          @Override
@@ -175,7 +179,8 @@ public class VertretungsplanActivity extends AppCompatActivity
                             if (!(ConnectionTest.isOnline(context))) {
                                 startActivity();
                             }
-                            new WochennummerLadenTask(true, klassenauswahl, wochenauswahl, VertretungsplanActivity.this).execute();
+                            wochennummerLadenTask = new WochennummerLadenTask(true, klassenauswahl, wochenauswahl, VertretungsplanActivity.this);
+                            wochennummerLadenTask.execute();
                         }
 
                         @Override
@@ -193,9 +198,11 @@ public class VertretungsplanActivity extends AppCompatActivity
         } else {
             setContentView(R.layout.vertretungsplan);
             if (mitklassenauswahl) {
-                new VertretungsplanLadenTask(wochennummer + wochenauswahl, this).execute(Logic.fiveDigits(klassenauswahl));
+                vertretungsplanLadenTask = new VertretungsplanLadenTask(wochennummer + wochenauswahl, this);
+                vertretungsplanLadenTask.execute(Logic.fiveDigits(klassenauswahl));
             } else {
-                new VertretungsplanLadenTask(wochennummer + wochenauswahl, this).execute(Logic.fiveDigits(fileWR.ladeFile(getFilesDir()+File.separator+"auswahl")));
+                vertretungsplanLadenTask = new VertretungsplanLadenTask(wochennummer + wochenauswahl, this);
+                vertretungsplanLadenTask.execute(Logic.fiveDigits(fileWR.ladeFile(getFilesDir() + File.separator + "auswahl")));
             }
         }
     }
@@ -205,7 +212,7 @@ public class VertretungsplanActivity extends AppCompatActivity
         if (vertretungsplan == null) {
             startActivity();
         } else {
-            fileWR.writeFile(hash, getFilesDir()+ File.separator+"vertretungsplanhash");
+            fileWR.writeFile(hash, getFilesDir() + File.separator + "vertretungsplanhash");
             TextView klasse = (TextView) findViewById(R.id.Klasse);
             if (vertretungsplan.Klasse == null) {
                 startActivity();
@@ -234,27 +241,25 @@ public class VertretungsplanActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (wochenLadenTask != null)
+            wochenLadenTask.cancel(true);
+        if (klassenLadenTask != null)
+            klassenLadenTask.cancel(true);
+        if (wochennummerLadenTask != null)
+            wochennummerLadenTask.cancel(true);
+        if (vertretungsplanLadenTask != null)
+            vertretungsplanLadenTask.cancel(true);
+    }
+
+    @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (id == R.id.startseite) {
-            startActivity(new Intent(context, MainActivity.class));
+        navigationDrawerNavigate = new NavigationDrawerNavigate(id, context);
+        if (id != R.id.vertretungsplan)
             finish();
-        } else if (id == R.id.vertretungsplan) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.einstellungen) {
-            startActivity(new Intent(context, EinstellungenActivity.class));
-            finish();
-        } else if (id == R.id.wochenplan) {
-            startActivity(new Intent(context, WochenplanActivtiy.class));
-            finish();
-        } else if (id == R.id.stundenzeiten) {
-            startActivity(new Intent(context, StundenzeitenActivity.class));
-            finish();
-        } else if (id == R.id.ueber) {
-            startActivity(new Intent(context, UeberActivity.class));
-            finish();
-        }
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

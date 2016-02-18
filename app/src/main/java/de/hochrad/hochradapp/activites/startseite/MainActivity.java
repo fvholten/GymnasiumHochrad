@@ -17,17 +17,12 @@ import com.kobakei.ratethisapp.RateThisApp;
 import java.util.List;
 
 import de.hochrad.hochradapp.R;
-import de.hochrad.hochradapp.activites.StundenzeitenActivity;
-import de.hochrad.hochradapp.activites.UeberActivity;
-import de.hochrad.hochradapp.activites.WochenplanActivtiy;
-import de.hochrad.hochradapp.activites.einstellungen.EinstellungenActivity;
-import de.hochrad.hochradapp.activites.vertretungsplan.VertretungsplanActivity;
+import de.hochrad.hochradapp.activites.NavigationDrawerNavigate;
 import de.hochrad.hochradapp.hilfsfunktionen.ConnectionTest;
 import de.hochrad.hochradapp.loader.NachrichtenDesTagesLadenTask;
 import de.hochrad.hochradapp.loader.NachrichtenDesTagesLadenTaskCallBack;
 import de.hochrad.hochradapp.loader.WochennummerLadenTask;
 import de.hochrad.hochradapp.loader.WochennummerLadenTaskCallBack;
-import de.hochrad.hochradapp.service.Service;
 
 public class MainActivity extends AppCompatActivity
         implements
@@ -36,6 +31,10 @@ public class MainActivity extends AppCompatActivity
         NachrichtenDesTagesLadenTaskCallBack {
 
     Context context = this;
+    NavigationDrawerNavigate navigationDrawerNavigate;
+    WochennummerLadenTask wochennummerLadenTask;
+    NachrichtenDesTagesLadenTask nachrichtenDesTagesLadenTask;
+    boolean NewIntent = false;
 
 
     @Override
@@ -54,8 +53,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        startService(new Intent(context, Service.class));
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         android.support.v7.app.ActionBarDrawerToggle toggle = new android.support.v7.app.ActionBarDrawerToggle(
@@ -70,14 +67,16 @@ public class MainActivity extends AppCompatActivity
         if (!(ConnectionTest.isOnline(context))) {
             startActivity();
         }
-        new WochennummerLadenTask(false, 0, 0, this).execute();
+        wochennummerLadenTask = new WochennummerLadenTask(false, 0, 0, this);
+        wochennummerLadenTask.execute();
     }
 
     public void WochennummerLaden(boolean mitklassenauswahl, int klassenauswahl, int wochenauswahl, Integer wochennummer) {
         if (wochennummer == null) {
             startActivity();
         } else {
-            new NachrichtenDesTagesLadenTask(wochennummer, this).execute();
+            nachrichtenDesTagesLadenTask = new NachrichtenDesTagesLadenTask(wochennummer, this);
+            nachrichtenDesTagesLadenTask.execute();
         }
     }
 
@@ -98,6 +97,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (wochennummerLadenTask != null)
+            wochennummerLadenTask.cancel(true);
+        if (nachrichtenDesTagesLadenTask != null)
+            nachrichtenDesTagesLadenTask.cancel(true);
+    }
+
+    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -111,24 +119,9 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (id == R.id.startseite) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.vertretungsplan) {
-            startActivity(new Intent(context, VertretungsplanActivity.class));
+        navigationDrawerNavigate = new NavigationDrawerNavigate(id, context);
+        if (id != R.id.startseite)
             finish();
-        } else if (id == R.id.einstellungen) {
-            startActivity(new Intent(context, EinstellungenActivity.class));
-            finish();
-        } else if (id == R.id.wochenplan) {
-            startActivity(new Intent(context, WochenplanActivtiy.class));
-            finish();
-        } else if (id == R.id.stundenzeiten) {
-            startActivity(new Intent(context, StundenzeitenActivity.class));
-            finish();
-        } else if (id == R.id.ueber) {
-            startActivity(new Intent(context, UeberActivity.class));
-            finish();
-        }
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

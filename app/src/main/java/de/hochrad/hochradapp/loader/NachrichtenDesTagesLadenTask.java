@@ -7,6 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hochrad.hochradapp.hilfsfunktionen.Logic;
@@ -14,6 +15,7 @@ import de.hochrad.hochradapp.hilfsfunktionen.Logic;
 public class NachrichtenDesTagesLadenTask extends AsyncTask<Void, Void, List<String>> {
     NachrichtenDesTagesLadenTaskCallBack callBack;
     Integer wochennummer;
+    Document doc;
 
     public NachrichtenDesTagesLadenTask(Integer wochennummer, NachrichtenDesTagesLadenTaskCallBack callBack) {
         this.wochennummer = wochennummer;
@@ -22,19 +24,19 @@ public class NachrichtenDesTagesLadenTask extends AsyncTask<Void, Void, List<Str
 
     @Override
     protected List<String> doInBackground(Void... params) {
-
-        String url = "http://www.gymnasium-hochrad.de/Vertretungsplan/Vertretungsplan_Internet/" + Logic.twoDigits(wochennummer) + "/w/w" + Logic.fiveDigits(1) + ".htm";
-        Connection connection = Jsoup.connect(url);
-        Document doc;
-        try {
-            doc = connection.get();
-            if (ParseUtilities.ParseNachrichtenDesTages(doc) == null) {
+        if (!isCancelled()) {
+            String url = "http://www.gymnasium-hochrad.de/Vertretungsplan/Vertretungsplan_Internet/" + Logic.twoDigits(wochennummer) + "/w/w" + Logic.fiveDigits(1) + ".htm";
+            Connection connection = Jsoup.connect(url);
+            try {
+                doc = connection.get();
+            } catch (IOException e) {
                 return null;
-            }else {
-                return ParseUtilities.ParseNachrichtenDesTages(doc);
             }
-        } catch (IOException e) {
-            return null;
+            return ParseUtilities.ParseNachrichtenDesTages(doc);
+        } else {
+            List<String> dummy = new ArrayList<>();
+            dummy.add("0");
+            return dummy;
         }
     }
 

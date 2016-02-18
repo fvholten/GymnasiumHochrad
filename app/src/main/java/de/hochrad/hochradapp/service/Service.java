@@ -1,10 +1,12 @@
 package de.hochrad.hochradapp.service;
 
+import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.IBinder;
 
 import org.jsoup.Connection;
@@ -18,10 +20,9 @@ import java.util.concurrent.TimeUnit;
 
 import de.hochrad.hochradapp.R;
 import de.hochrad.hochradapp.activites.startseite.MainActivity;
-import de.hochrad.hochradapp.hilfsfunktionen.Logic;
 import de.hochrad.hochradapp.hilfsfunktionen.FileWR;
+import de.hochrad.hochradapp.hilfsfunktionen.Logic;
 import de.hochrad.hochradapp.loader.ParseUtilities;
-//TODO
 
 public class Service extends android.app.Service {
 
@@ -37,10 +38,11 @@ public class Service extends android.app.Service {
     public void onCreate() {
         super.onCreate();
         fileWR = new FileWR();
-        if (fileWR.ladeFile(getFilesDir() + File.separator + "switch") == 2) {
-            Executors.newSingleThreadScheduledExecutor().schedule
-                    (new Runnable() {
-                        public void run() {
+        Executors.newSingleThreadScheduledExecutor().schedule
+                (new Runnable() {
+                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+                    public void run() {
+                        if (fileWR.ladeFile(getFilesDir() + File.separator + "switch") == 2) {
                             String url = "http://www.gymnasium-hochrad.de/Vertretungsplan/Vertretungsplan_Internet/frames/navbar.htm";
                             Connection connection = Jsoup.connect(url);
                             Document docW;
@@ -58,7 +60,6 @@ public class Service extends android.app.Service {
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                                     PendingIntent pendingIntent = PendingIntent.getActivity(Service.this, 0, intent, 0);
 
-
                                     Notification notification = new Notification.Builder(Service.this)
                                             .setTicker("Vertretungplanupdate")
                                             .setSmallIcon(R.drawable.ic_view_list_black_24dp)
@@ -72,17 +73,11 @@ public class Service extends android.app.Service {
                                     NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                                     notificationManager.notify(0, notification);
                                 }
-
-                            } catch (
-                                    IOException e
-                                    )
-
-                            {
-                                e.printStackTrace();
+                            } catch (IOException ignored) {
                             }
                         }
-                    }, fileWR.ladeFile(getFilesDir()+File.separator+"servicezeit"), TimeUnit.HOURS);
-        }
+                    }
+                }, fileWR.ladeFile(getFilesDir() + File.separator + "servicezeit"), TimeUnit.HOURS);
     }
 
 }

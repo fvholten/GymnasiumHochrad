@@ -26,16 +26,13 @@ import android.widget.Toast;
 
 import java.io.File;
 
+import de.hochrad.hochradapp.R;
+import de.hochrad.hochradapp.activites.NavigationDrawerNavigate;
 import de.hochrad.hochradapp.hilfsfunktionen.ConnectionTest;
-import de.hochrad.hochradapp.activites.startseite.MainActivity;
-import de.hochrad.hochradapp.activites.StundenzeitenActivity;
-import de.hochrad.hochradapp.activites.UeberActivity;
-import de.hochrad.hochradapp.activites.WochenplanActivtiy;
-import de.hochrad.hochradapp.activites.vertretungsplan.VertretungsplanActivity;
+import de.hochrad.hochradapp.hilfsfunktionen.FileWR;
 import de.hochrad.hochradapp.loader.KlassenLadenTask;
 import de.hochrad.hochradapp.loader.KlassenLadenTaskCallBack;
-import de.hochrad.hochradapp.hilfsfunktionen.FileWR;
-import de.hochrad.hochradapp.R;
+import de.hochrad.hochradapp.service.Service;
 
 public class EinstellungenActivity extends AppCompatActivity
         implements
@@ -48,6 +45,8 @@ public class EinstellungenActivity extends AppCompatActivity
     Spinner klassenspinner;
     ArrayAdapter<String> klassenauswahlAdapter;
     Context context = this;
+    NavigationDrawerNavigate navigationDrawerNavigate;
+    KlassenLadenTask klassenLadenTask;
 
 
     @Override
@@ -68,51 +67,55 @@ public class EinstellungenActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        Switch notificationswitch = (Switch) findViewById(R.id.switchNotifications);
+//        In der App
         fileWR = new FileWR();
-        if (fileWR.ladeFile(getFilesDir() + File.separator + "switch") == 2) {
+        int switcher = fileWR.ladeFile(getFilesDir() + File.separator + "switch");
+        Switch notificationswitch = (Switch) findViewById(R.id.switchNotifications);
+        final LinearLayout linearLayout = (LinearLayout) findViewById(R.id.SwitchON);
+        if (switcher == 2) {
+            linearLayout.setVisibility(View.VISIBLE);
             notificationswitch.setChecked(true);
-            LinearLayout l = (LinearLayout) findViewById(R.id.SwitchON);
-            l.setVisibility(View.VISIBLE);
-            notificationswitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    fileWR = new FileWR();
-                    if (isChecked) {
-
-                        fileWR.writeFile(2, getFilesDir() + File.separator + "switch");
-                        EditText editText = (EditText) findViewById(R.id.editNotification);
-                        editText.addTextChangedListener(new TextWatcher() {
-
-                            @Override
-                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                            }
-
-                            @Override
-                            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                            }
-
-                            @Override
-                            public void afterTextChanged(Editable s) {
-                                if (!s.toString().equals(""))
-                                    fileWR.writeFile(Integer.parseInt(s.toString()), getFilesDir() + File.separator + "servicezeit");
-                            }
-                        });
-                    } else {
-                        fileWR = new FileWR();
-                        fileWR.writeFile(1, getFilesDir() + File.separator + "switch");
-                    }
-                }
-            });
         } else {
             notificationswitch.setChecked(false);
+            linearLayout.setVisibility(View.INVISIBLE);
         }
-//        In der App
+        EditText editText = (EditText) findViewById(R.id.editNotification);
+        editText.setText("" + fileWR.ladeFile(getFilesDir() + File.separator + "servicezeit"));
+        editText.addTextChangedListener(new TextWatcher() {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            public void afterTextChanged(Editable s) {
+                if (!s.toString().equals("")) {
+                    Toast.makeText(context, "Gespeichert!", Toast.LENGTH_SHORT).show();
+                    fileWR.writeFile(Integer.parseInt(s.toString()), getFilesDir() + File.separator + "servicezeit");
+                    startService(new Intent(context, Service.class));
+                }
+            }
+        });
+        notificationswitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    fileWR.writeFile(2, getFilesDir() + File.separator + "switch");
+                    linearLayout.setVisibility(View.VISIBLE);
+                    startService(new Intent(context, Service.class));
+                } else {
+                    fileWR.writeFile(1, getFilesDir() + File.separator + "switch");
+                    linearLayout.setVisibility(View.INVISIBLE);
+                    startService(new Intent(context, Service.class));
+                }
+            }
+
+        });
         if (!ConnectionTest.isOnline(context)) {
             startActivity();
         }
-        new KlassenLadenTask(0, this).execute();
+        klassenLadenTask = new KlassenLadenTask(0, this);
+        klassenLadenTask.execute();
     }
 
     @Override
@@ -157,6 +160,13 @@ public class EinstellungenActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (klassenLadenTask != null)
+            klassenLadenTask.cancel(true);
+    }
+
+    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -170,24 +180,9 @@ public class EinstellungenActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (id == R.id.startseite) {
-            startActivity(new Intent(context, MainActivity.class));
+        navigationDrawerNavigate = new NavigationDrawerNavigate(id, context);
+        if (id != R.id.einstellungen)
             finish();
-        } else if (id == R.id.vertretungsplan) {
-            startActivity(new Intent(context, VertretungsplanActivity.class));
-            finish();
-        } else if (id == R.id.einstellungen) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.wochenplan) {
-            startActivity(new Intent(context, WochenplanActivtiy.class));
-            finish();
-        } else if (id == R.id.stundenzeiten) {
-            startActivity(new Intent(context, StundenzeitenActivity.class));
-            finish();
-        } else if (id == R.id.ueber) {
-            startActivity(new Intent(context, UeberActivity.class));
-            finish();
-        }
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

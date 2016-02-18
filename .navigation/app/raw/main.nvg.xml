@@ -12,9 +12,8 @@
         y = "160"/>
     </statePointEntry>
     <statePointEntry>
-      <state      
-        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "de.hochrad.hochradapp.activites.WochenplanActivtiy"/>
+      <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
+          className="de.hochrad.hochradapp.activites.wochenplan.WochenplanActivtiy" />
       <point      
         x = "3204"      
         y = "12"/>
@@ -28,17 +27,15 @@
         y = "1508"/>
     </statePointEntry>
     <statePointEntry>
-      <state      
-        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "de.hochrad.hochradapp.activites.UeberActivity"/>
+      <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
+          className="de.hochrad.hochradapp.activites.ueber.UeberActivity" />
       <point      
         x = "1464"      
         y = "0"/>
     </statePointEntry>
     <statePointEntry>
-      <state      
-        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "de.hochrad.hochradapp.activites.StundenzeitenActivity"/>
+      <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
+          className="de.hochrad.hochradapp.activites.stundenzeiten.StundenzeitenActivity" />
       <point      
         x = "2244"      
         y = "1780"/>

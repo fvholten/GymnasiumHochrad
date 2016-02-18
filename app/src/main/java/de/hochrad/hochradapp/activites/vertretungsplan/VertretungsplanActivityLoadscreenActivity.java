@@ -2,7 +2,7 @@ package de.hochrad.hochradapp.activites.vertretungsplan;
 
 import android.content.Intent;
 
-import de.hochrad.hochradapp.activites.LoadscreenActivity;
+import de.hochrad.hochradapp.activites.loadscreen.LoadscreenActivity;
 
 public class VertretungsplanActivityLoadscreenActivity extends LoadscreenActivity
 {

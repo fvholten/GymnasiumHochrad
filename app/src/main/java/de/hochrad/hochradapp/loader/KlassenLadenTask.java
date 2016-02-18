@@ -9,32 +9,32 @@ import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 
-public class KlassenLadenTask extends AsyncTask<Void, Void, String[]>{
+public class KlassenLadenTask extends AsyncTask<Void, Void, String[]> {
 
     KlassenLadenTaskCallBack callBack;
     int wochenauswahl;
+    Document doc;
 
-    public KlassenLadenTask (int wochenauswahl, KlassenLadenTaskCallBack callBack) {
+    public KlassenLadenTask(int wochenauswahl, KlassenLadenTaskCallBack callBack) {
         this.callBack = callBack;
         this.wochenauswahl = wochenauswahl;
     }
 
     @Override
     protected String[] doInBackground(Void... params) {
-        String url = "http://www.gymnasium-hochrad.de/Vertretungsplan/Vertretungsplan_Internet/frames/navbar.htm";
+        if (!isCancelled()) {
+            String url = "http://www.gymnasium-hochrad.de/Vertretungsplan/Vertretungsplan_Internet/frames/navbar.htm";
+            Connection connection = Jsoup.connect(url);
 
-        Connection connection = Jsoup.connect(url);
-        Document doc;
-        try {
-            doc = connection.get();
-            if (ParseUtilities.ParseKlassenEinlesen(doc) == null) {
+            try {
+                doc = connection.get();
+            } catch (IOException e) {
                 return null;
-            }else {
-                return ParseUtilities.ParseKlassenEinlesen(doc);
             }
-        } catch (IOException e) {
-            return null;
-        }
+            return ParseUtilities.ParseKlassenEinlesen(doc);
+
+        } else return new String[1];
+
 
     }
 

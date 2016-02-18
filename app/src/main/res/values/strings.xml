@@ -92,6 +92,7 @@
     <string name="NotificationTextView">Wie oft soll ich den Vertretungsplan überprüfen?</string>
     <string name="AllexStunden2">Stunden.</string>
     <string name="AllexStunden">Alle</string>
+    <string name="Speichern">Speichern!</string>
 
     <string-array name="WähleWoche">
         <item>Wähle eine Woche</item>

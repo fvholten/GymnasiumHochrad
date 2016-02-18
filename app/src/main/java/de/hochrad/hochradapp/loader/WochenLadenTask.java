@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class WochenLadenTask extends AsyncTask<Void, Void, String[]> {
     WochenLadenTaskCallBack callBack;
+    Document doc;
 
     public WochenLadenTask(WochenLadenTaskCallBack callBack) {
         this.callBack = callBack;
@@ -17,20 +18,16 @@ public class WochenLadenTask extends AsyncTask<Void, Void, String[]> {
 
     @Override
     protected String[] doInBackground(Void... params) {
-        String url = "http://www.gymnasium-hochrad.de/Vertretungsplan/Vertretungsplan_Internet/frames/navbar.htm";
-        Connection connection = Jsoup.connect(url);
-        Document doc;
-        try {
-            doc = connection.get();
-            if (ParseUtilities.ParseWochenEinlesen(doc) == null) {
+        if (!isCancelled()) {
+            String url = "http://www.gymnasium-hochrad.de/Vertretungsplan/Vertretungsplan_Internet/frames/navbar.htm";
+            Connection connection = Jsoup.connect(url);
+            try {
+                doc = connection.get();
+            } catch (IOException e) {
                 return null;
-            } else {
-                return ParseUtilities.ParseWochenEinlesen(doc);
             }
-        } catch (IOException e) {
-            return null;
-        }
-
+            return ParseUtilities.ParseWochenEinlesen(doc);
+        } else return new String[1];
     }
 
     protected void onPostExecute(String[] result) {
