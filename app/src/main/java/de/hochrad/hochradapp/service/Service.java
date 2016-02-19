@@ -1,12 +1,10 @@
 package de.hochrad.hochradapp.service;
 
-import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.IBinder;
 
 import org.jsoup.Connection;
@@ -40,7 +38,6 @@ public class Service extends android.app.Service {
         fileWR = new FileWR();
         Executors.newSingleThreadScheduledExecutor().schedule
                 (new Runnable() {
-                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                     public void run() {
                         if (fileWR.ladeFile(getFilesDir() + File.separator + "switch") == 2) {
                             String url = "http://www.gymnasium-hochrad.de/Vertretungsplan/Vertretungsplan_Internet/frames/navbar.htm";
@@ -63,9 +60,10 @@ public class Service extends android.app.Service {
                                     Notification notification = new Notification.Builder(Service.this)
                                             .setTicker("Vertretungplanupdate")
                                             .setSmallIcon(R.drawable.ic_view_list_black_24dp)
-                                            .setContentTitle(getString(R.string.vertretungsplanupdate))
+                                            .setContentTitle(getString(R.string.app_name))
+                                            .setContentText(getString(R.string.vertretungsplanupdate))
                                             .setContentIntent(pendingIntent)
-                                            .build();
+                                            .getNotification();
                                     notification.flags = Notification.DEFAULT_ALL;
                                     notification.flags = Notification.FLAG_AUTO_CANCEL;
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -79,5 +77,4 @@ public class Service extends android.app.Service {
                     }
                 }, fileWR.ladeFile(getFilesDir() + File.separator + "servicezeit"), TimeUnit.HOURS);
     }
-
 }

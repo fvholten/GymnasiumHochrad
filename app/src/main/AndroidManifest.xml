@@ -8,17 +8,17 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:fullBackupContent="true"
-        android:allowBackup="true">
+        android:theme="@style/AppTheme">
 
         <receiver
             android:name=".service.BootCompleted"
             android:enabled="true"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
@@ -40,9 +40,13 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="Einstellungen"
             android:theme="@style/AppTheme.NoActionBar">
+
         </activity>
 
-        <service android:name=".service.Service" >
+        <service
+            android:name=".service.Service"
+            android:enabled="@bool/atLeastKitKat">
+
         </service>
 
         <activity
@@ -50,18 +54,21 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="Über mich"
             android:theme="@style/AppTheme.NoActionBar">
+
         </activity>
         <activity
             android:name=".activites.wochenplan.WochenplanActivtiy"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="Wochenplan"
             android:theme="@style/AppTheme.NoActionBar">
+
         </activity>
         <activity
             android:name=".activites.vertretungsplan.VertretungsplanActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="Vertretungsplan"
             android:theme="@style/AppTheme.NoActionBar">
+
         </activity>
 
         <activity
@@ -69,24 +76,28 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="Stundenzeiten"
             android:theme="@style/AppTheme.NoActionBar">
+
         </activity>
         <activity
             android:name=".activites.startseite.MainActivityLoadscreenActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="Loadscreen"
             android:theme="@style/AppTheme.NoActionBar">
+
         </activity>
         <activity
             android:name=".activites.einstellungen.EinstellungenActivityLoadscreenActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="Loadscreen"
             android:theme="@style/AppTheme.NoActionBar">
+
         </activity>
         <activity
             android:name=".activites.vertretungsplan.VertretungsplanActivityLoadscreenActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="Loadscreen"
             android:theme="@style/AppTheme.NoActionBar">
+
         </activity>
     </application>
 

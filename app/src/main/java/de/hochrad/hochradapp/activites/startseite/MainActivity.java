@@ -23,6 +23,7 @@ import de.hochrad.hochradapp.loader.NachrichtenDesTagesLadenTask;
 import de.hochrad.hochradapp.loader.NachrichtenDesTagesLadenTaskCallBack;
 import de.hochrad.hochradapp.loader.WochennummerLadenTask;
 import de.hochrad.hochradapp.loader.WochennummerLadenTaskCallBack;
+import de.hochrad.hochradapp.service.Service;
 
 public class MainActivity extends AppCompatActivity
         implements
@@ -34,12 +35,13 @@ public class MainActivity extends AppCompatActivity
     NavigationDrawerNavigate navigationDrawerNavigate;
     WochennummerLadenTask wochennummerLadenTask;
     NachrichtenDesTagesLadenTask nachrichtenDesTagesLadenTask;
-    boolean NewIntent = false;
 
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        startService(new Intent(context, Service.class));
 
         RateThisApp.Config config = new RateThisApp.Config(5, 7);
         config.setTitle(R.string.my_own_title_rateme);
