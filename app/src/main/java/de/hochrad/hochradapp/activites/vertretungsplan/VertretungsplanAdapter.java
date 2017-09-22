@@ -40,8 +40,8 @@ public class VertretungsplanAdapter extends RecyclerView.Adapter<Vertretungsplan
         holder.Stunde.setText(v.Stunde.toString());
         holder.Fach.setText(v.Fach.toString());
         holder.Raumbezeichnung.setText(v.Raum.toString());
-        holder.stattFach.setText(v.statt_Fach.toString());
-        holder.stattRaum.setText(v.statt_Raum.toString());
+        //holder.stattFach.setText(v.statt_Fach.toString());
+        //holder.stattRaum.setText(v.statt_Raum.toString());
         holder.Art.setText(v.Art.toString());
         holder.Informationen.setText(v.Informationen.toString());
     }
@@ -54,7 +54,7 @@ public class VertretungsplanAdapter extends RecyclerView.Adapter<Vertretungsplan
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView Stunde, Art, Fach, Raumbezeichnung, stattFach, stattRaum, Informationen, Wochentag;
+        TextView Stunde, Art, Fach, Raumbezeichnung, Informationen, Wochentag;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -63,8 +63,8 @@ public class VertretungsplanAdapter extends RecyclerView.Adapter<Vertretungsplan
             Art = (TextView) itemView.findViewById(R.id.Art);
             Fach = (TextView) itemView.findViewById(R.id.Fach);
             Raumbezeichnung = (TextView) itemView.findViewById(R.id.Raumbezeichnung);
-            stattFach = (TextView) itemView.findViewById(R.id.stattFach);
-            stattRaum = (TextView) itemView.findViewById(R.id.stattRaum);
+            //stattFach = (TextView) itemView.findViewById(R.id.stattFach);
+            //stattRaum = (TextView) itemView.findViewById(R.id.stattRaum);
             Informationen = (TextView) itemView.findViewById(R.id.Informationen);
             Wochentag = (TextView) itemView.findViewById(R.id.Wochentag);
         }

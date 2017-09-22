@@ -28,7 +28,7 @@ public class VertretungsplanLadenTask extends AsyncTask<String, Void, Vertretung
     protected Vertretungsplan doInBackground(String... params) {
         Vertretungsplan vertretungsplan = new Vertretungsplan();
         if (!isCancelled()) {
-            String url = "http://www.gymnasium-hochrad.de/Vertretungsplan/Vertretungsplan_Internet/" + Logic.twoDigits(wochennummer) + "/w/w" + params[0] + ".htm";
+            String url = "https://hochrad.de/idesk/plan/public.php/Vertretungsplan%20Schüler/55b3979bef1fa6b3/" + Logic.twoDigits(wochennummer) + "/w/w" + params[0] + ".htm";
             Connection connection = Jsoup.connect(url);
             try {
                 doc = connection.get();
@@ -46,8 +46,8 @@ public class VertretungsplanLadenTask extends AsyncTask<String, Void, Vertretung
             vertretung.Art = ParseUtilities.ToArt("error");
             vertretung.Fach = ParseUtilities.ToFach("error");
             vertretung.Raum = ParseUtilities.ToRaum("error");
-            vertretung.statt_Fach = ParseUtilities.ToFach("error");
-            vertretung.statt_Raum = ParseUtilities.ToRaum("error");
+            //vertretung.statt_Fach = ParseUtilities.ToFach("error");
+            //vertretung.statt_Raum = ParseUtilities.ToRaum("error");
             vertretung.Informationen = ParseUtilities.ToInformation("error");
             vertretung.Klasse = ParseUtilities.ToKlasse("error");
             vertretungsplan.Hinzufügen(vertretung);

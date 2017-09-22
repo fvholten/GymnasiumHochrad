@@ -5,35 +5,38 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:padding="5dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingRight="@dimen/activity_horizontal_margin"
         android:orientation="vertical">
 
 
         <TextView
             android:id="@+id/Überschrift"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_centerHorizontal="true"
             android:text="@string/Vertretungsplan"
             android:textSize="23sp"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/back"
+            android:layout_below="@+id/Überschrift"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:text="@string/Zurück" />
 
         <TextView
             android:id="@+id/Klasse"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:layout_below="@id/back"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="23sp"
             android:textStyle="bold" />
@@ -43,27 +46,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="22sp"
-            android:visibility="invisible"/>
+            android:layout_below="@id/Klasse"
+            android:visibility="gone" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
     <HorizontalScrollView
         android:id="@+id/HorizontalScrollView01"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:measureAllChildren="false"
         android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="1000dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
@@ -87,7 +91,7 @@
                     android:id="@+id/FachÜS"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginEnd="7dp"
                     android:layout_marginStart="7dp"
                     android:text="@string/Fach"
                     android:textColor="@color/darkpurple"
@@ -97,37 +101,38 @@
                     android:id="@+id/RaumÜS"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginEnd="7dp"
                     android:layout_marginStart="7dp"
                     android:text="@string/Raum"
                     android:textColor="@color/darkblue"
                     android:textStyle="bold" />
+                <!--
+                                <TextView
+                                    android:id="@+id/stattFachÜS"
+                                    android:layout_width="80dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="7dp"
+                                    android:layout_marginStart="7dp"
+                                    android:text="@string/stattFach"
+                                    android:textColor="@color/darkorange"
+                                    android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/stattFachÜS"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginStart="7dp"
-                    android:text="@string/stattFach"
-                    android:textColor="@color/darkorange"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/stattRaumÜS"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginStart="7dp"
-                    android:text="@string/stattRaum"
-                    android:textColor="@color/green"
-                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/stattRaumÜS"
+                                    android:layout_width="80dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="7dp"
+                                    android:layout_marginStart="7dp"
+                                    android:text="@string/stattRaum"
+                                    android:textColor="@color/green"
+                                    android:textStyle="bold" />
+                                    -->
 
                 <TextView
                     android:id="@+id/ArtÜS"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginEnd="7dp"
                     android:layout_marginStart="7dp"
                     android:text="@string/Art"
                     android:textColor="@color/black"
@@ -137,7 +142,7 @@
                     android:id="@+id/InformationenÜS"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginEnd="7dp"
                     android:layout_marginStart="7dp"
                     android:text="@string/Information"
                     android:textColor="@color/yellow"
@@ -147,7 +152,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/vertretungsplan"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="10dp" />
         </LinearLayout>
 

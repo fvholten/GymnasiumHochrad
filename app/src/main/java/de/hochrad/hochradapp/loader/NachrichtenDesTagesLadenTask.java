@@ -25,7 +25,7 @@ public class NachrichtenDesTagesLadenTask extends AsyncTask<Void, Void, List<Str
     @Override
     protected List<String> doInBackground(Void... params) {
         if (!isCancelled()) {
-            String url = "http://www.gymnasium-hochrad.de/Vertretungsplan/Vertretungsplan_Internet/" + Logic.twoDigits(wochennummer) + "/w/w" + Logic.fiveDigits(1) + ".htm";
+            String url = "https://hochrad.de/idesk/plan/public.php/Vertretungsplan%20Schüler/55b3979bef1fa6b3/" + Logic.twoDigits(wochennummer) + "/w/w" + Logic.fiveDigits(1) + ".htm";
             Connection connection = Jsoup.connect(url);
             try {
                 doc = connection.get();

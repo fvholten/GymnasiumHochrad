@@ -7,8 +7,8 @@ public class Vertretung {
     public Art Art;
     public Fach Fach;
     public Raum Raum;
-    public Fach statt_Fach;
-    public Raum statt_Raum;
+    //public Fach statt_Fach;
+    //public Raum statt_Raum;
     public Information Informationen;
     public Klasse Klasse;
 }

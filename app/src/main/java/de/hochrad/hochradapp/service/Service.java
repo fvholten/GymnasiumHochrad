@@ -59,7 +59,7 @@ public class Service extends android.app.Service {
 
                                     Notification notification = new Notification.Builder(Service.this)
                                             .setTicker("Vertretungplanupdate")
-                                            .setSmallIcon(R.drawable.ic_view_list_black_24dp)
+                                            .setSmallIcon(R.drawable.ic_view_list_black_24px)
                                             .setContentTitle(getString(R.string.app_name))
                                             .setContentText(getString(R.string.vertretungsplanupdate))
                                             .setContentIntent(pendingIntent)

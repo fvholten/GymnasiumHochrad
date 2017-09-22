@@ -35,12 +35,12 @@ public class MainActivity extends AppCompatActivity
     NavigationDrawerNavigate navigationDrawerNavigate;
     WochennummerLadenTask wochennummerLadenTask;
     NachrichtenDesTagesLadenTask nachrichtenDesTagesLadenTask;
+    DrawerLayout drawer;
 
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         startService(new Intent(context, Service.class));
 
         RateThisApp.Config config = new RateThisApp.Config(5, 7);
@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity
         RateThisApp.init(config);
         RateThisApp.onStart(context);
         RateThisApp.showRateDialogIfNeeded(context);
+
 // NavigationDrawer und ToolBar!!!!
         setContentView(R.layout.activity_main);
 
@@ -89,8 +90,8 @@ public class MainActivity extends AppCompatActivity
             ArrayAdapter<String> NachrichtenzumTagInhaltAdapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1);
 
             NachrichtenzumTagInhaltAdapter.addAll(newsDerWoche);
-            GridView NachrichtenzumTagInhalt = (GridView) findViewById(R.id.NachrichtenzumTagInhalt);
-            NachrichtenzumTagInhalt.setAdapter(NachrichtenzumTagInhaltAdapter);
+            GridView nachrichtenzumTagInhalt = (GridView) findViewById(R.id.NachrichtenzumTagInhalt);
+            nachrichtenzumTagInhalt.setAdapter(NachrichtenzumTagInhaltAdapter);
         }
     }
 

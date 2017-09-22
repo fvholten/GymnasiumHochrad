@@ -3,28 +3,23 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/startseite"
-            android:icon="@drawable/ic_home_black_24dp"
+            android:icon="@drawable/ic_home_black_24px"
             android:title="@string/Startseite"/>
         <item
             android:id="@+id/vertretungsplan"
-            android:icon="@drawable/ic_view_list_black_24dp"
+            android:icon="@drawable/ic_view_list_black_24px"
             android:title="@string/Vertretungsplan"/>
-
-        <item
-            android:id="@+id/wochenplan"
-            android:icon="@drawable/ic_timeline_black_24dp"
-            android:title="@string/Wochenplan"/>
         <item
             android:id="@+id/stundenzeiten"
-            android:icon="@drawable/ic_access_time_black_24dp"
+            android:icon="@drawable/ic_access_time_black_24px"
             android:title="@string/stundenzeiten"/>
         <item
             android:id="@+id/einstellungen"
-            android:icon="@drawable/ic_settings_black_24dp"
+            android:icon="@drawable/ic_settings_black_24px"
             android:title="@string/Einstellungen"/>
         <item
             android:id="@+id/ueber"
-            android:icon="@drawable/ic_info_black_24dp"
+            android:icon="@drawable/ic_info_black_24px"
             android:title="@string/Über"/>
     </group>
 

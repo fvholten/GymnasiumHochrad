@@ -61,7 +61,6 @@ public class VertretungsplanActivity extends AppCompatActivity
         setContentView(R.layout.activity_wochenauswahl);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         android.support.v7.app.ActionBarDrawerToggle toggle = new android.support.v7.app.ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
@@ -211,6 +210,7 @@ public class VertretungsplanActivity extends AppCompatActivity
     public void VertretungsplanLaden(int hash, Vertretungsplan vertretungsplan) {
         if (vertretungsplan == null) {
             startActivity();
+            finish();
         } else {
             fileWR.writeFile(hash, getFilesDir() + File.separator + "vertretungsplanhash");
             TextView klasse = (TextView) findViewById(R.id.Klasse);

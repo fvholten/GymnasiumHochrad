@@ -13,7 +13,7 @@ public class Logic {
     }
     public static String twoDigits(int i)
     {
-        if (i < 9) {
+        if (i <= 9) {
             return "0" + i;
         } else {
             return "" + i;

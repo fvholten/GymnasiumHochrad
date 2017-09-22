@@ -75,7 +75,6 @@
 
 
     <!--anderes-->
-    <string name="bald">Bald Verfügbar</string>
     <string name="Zurück">Zurück</string>
     <string name="Einstellungengespeichert">NEU: Jetzt überwache ich die Vertretungen der Klasse:</string>
     <string name="aktuelleÜberwachung">Aktuell überwache ich die Vertretungen der Klasse:</string>
@@ -89,10 +88,10 @@
     <string name="stundenzeiten">Stundenzeiten</string>
     <string name="Startseite">Startseite</string>
     <string name="NotificationSwitch">Benachrichtigungen</string>
-    <string name="NotificationTextView">Wie oft soll ich den Vertretungsplan überprüfen?</string>
+    <string name="NotificationTextView">Wie oft soll der Vertretungsplan überprüft werden?</string>
     <string name="AllexStunden2">Stunden.</string>
     <string name="AllexStunden">Alle</string>
-    <string name="Speichern">Speichern!</string>
+    <string name="Speichern">Speichern</string>
 
     <string-array name="WähleWoche">
         <item>Wähle eine Woche</item>

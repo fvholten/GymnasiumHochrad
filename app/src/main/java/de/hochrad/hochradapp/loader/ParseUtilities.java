@@ -134,16 +134,14 @@ public class ParseUtilities {
                         Element[] elemente0 = part.select("tr").toArray(new Element[0]);
                         for (int i = 1; i < elemente0.length; i++) {
                             Element[] tds = elemente0[i].select("td").toArray(new Element[0]);
-                            if (tds.length > 7) {
+                            if (tds.length >= 7) {
                                 Vertretung vertretung = new Vertretung();
                                 try {
                                     vertretung.Wochentag = ParseUtilities.ToWochentag(wochentag);
-                                    vertretung.Stunde = ParseUtilities.ToStunde(tds[1].text());
-                                    vertretung.Art = ParseUtilities.ToArt(tds[2].text());
-                                    vertretung.Fach = ParseUtilities.ToFach(tds[3].text());
-                                    vertretung.Raum = ParseUtilities.ToRaum(tds[4].text());
-                                    vertretung.statt_Fach = ParseUtilities.ToFach(tds[5].text());
-                                    vertretung.statt_Raum = ParseUtilities.ToRaum(tds[6].text());
+                                    vertretung.Stunde = ParseUtilities.ToStunde(tds[0].text());
+                                    vertretung.Fach = ParseUtilities.ToFach(tds[2].text());
+                                    vertretung.Raum = ParseUtilities.ToRaum(tds[3].text());
+                                    vertretung.Art = ParseUtilities.ToArt(tds[4].text());
                                     vertretung.Informationen = ParseUtilities.ToInformation(tds[7].text());
                                     vertretung.Klasse = vertretungsplan.Klasse;
                                     vertretungsplan.Hinzufügen(vertretung);
