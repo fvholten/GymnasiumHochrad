@@ -1,7 +1,7 @@
 package de.hochrad.hochradapp.domain;
 
 /*
-Die Vorstufenklasse ist eine Klasse, die sich aus einem V, was für Vorstufe
+Die Vorstufenklasse ist eine klasse, die sich aus einem V, was für Vorstufe
 zusammen steht und einem weiterem Buchstaben, der die Vorstufe in
 Klassen unterteilt.
  */

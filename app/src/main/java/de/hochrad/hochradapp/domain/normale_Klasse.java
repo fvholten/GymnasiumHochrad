@@ -1,7 +1,7 @@
 package de.hochrad.hochradapp.domain;
 
 /*
-Die normale Klasse ist eine Klasse, sie setzt sich aus
+Die normale klasse ist eine klasse, sie setzt sich aus
 der Stufe, also einer Zahl und der Aufteilung in der
 Stufe, es handelt sich dabei um Buchstaben zusammen.
  */

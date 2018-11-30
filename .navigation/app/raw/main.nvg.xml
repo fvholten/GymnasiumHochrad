@@ -6,14 +6,14 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "de.hochrad.hochradapp.activites.startseite.MainActivity"/>
+        className = "de.hochrad.hochradapp.activities.AppActivity"/>
       <point      
         x = "2184"      
         y = "160"/>
     </statePointEntry>
     <statePointEntry>
       <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
-          className="de.hochrad.hochradapp.activites.wochenplan.WochenplanActivtiy" />
+          className="de.hochrad.hochradapp.activities.wochenplan.WochenplanActivtiy" />
       <point      
         x = "3204"      
         y = "12"/>
@@ -21,21 +21,21 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "de.hochrad.hochradapp.activites.startseite.MainActivityLoadscreenActivity"/>
+        className = "de.hochrad.hochradapp.activities.startseite.MainActivityLoadscreenActivity"/>
       <point      
         x = "1280"      
         y = "1508"/>
     </statePointEntry>
     <statePointEntry>
       <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
-          className="de.hochrad.hochradapp.activites.ueber.UeberActivity" />
+          className="de.hochrad.hochradapp.activities.ueber.UeberActivity" />
       <point      
         x = "1464"      
         y = "0"/>
     </statePointEntry>
     <statePointEntry>
       <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
-          className="de.hochrad.hochradapp.activites.stundenzeiten.StundenzeitenActivity" />
+          className="de.hochrad.hochradapp.activities.stundenzeiten.StundenzeitenActivity" />
       <point      
         x = "2244"      
         y = "1780"/>
@@ -43,7 +43,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "de.hochrad.hochradapp.activites.einstellungen.EinstellungenActivityLoadscreenActivity"/>
+        className = "de.hochrad.hochradapp.activities.einstellungen.EinstellungenActivityLoadscreenActivity"/>
       <point      
         x = "568"      
         y = "1428"/>
@@ -51,7 +51,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "de.hochrad.hochradapp.activites.vertretungsplan.VertretungsplanActivityLoadscreenActivity"/>
+        className = "de.hochrad.hochradapp.activities.vertretungsplan.VertretungsplanActivityLoadscreenActivity"/>
       <point      
         x = "2540"      
         y = "668"/>
@@ -59,7 +59,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "de.hochrad.hochradapp.activites.vertretungsplan.VertretungsplanActivity"/>
+        className = "de.hochrad.hochradapp.activities.vertretungsplan.VertretungsplanActivity"/>
       <point      
         x = "680"      
         y = "-52"/>
@@ -67,7 +67,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "de.hochrad.hochradapp.activites.einstellungen.EinstellungenActivity"/>
+        className = "de.hochrad.hochradapp.activities.einstellungen.EinstellungenActivity"/>
       <point      
         x = "4060"      
         y = "1800"/>

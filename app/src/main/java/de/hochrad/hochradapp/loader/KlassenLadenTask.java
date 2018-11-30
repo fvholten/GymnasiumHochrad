@@ -11,9 +11,8 @@ import java.io.IOException;
 
 public class KlassenLadenTask extends AsyncTask<Void, Void, String[]> {
 
-    KlassenLadenTaskCallBack callBack;
-    int wochenauswahl;
-    Document doc;
+    private KlassenLadenTaskCallBack callBack;
+    private int wochenauswahl;
 
     public KlassenLadenTask(int wochenauswahl, KlassenLadenTaskCallBack callBack) {
         this.callBack = callBack;
@@ -26,6 +25,7 @@ public class KlassenLadenTask extends AsyncTask<Void, Void, String[]> {
             String url = "https://hochrad.de/idesk/plan/public.php/Vertretungsplan%20Schüler/55b3979bef1fa6b3/frames/navbar.htm";
             Connection connection = Jsoup.connect(url);
 
+            Document doc;
             try {
                 doc = connection.get();
             } catch (IOException e) {
@@ -39,6 +39,6 @@ public class KlassenLadenTask extends AsyncTask<Void, Void, String[]> {
     }
 
     protected void onPostExecute(String[] result) {
-        callBack.KlassenLaden(wochenauswahl, result);
+        callBack.klassenLaden(wochenauswahl, result);
     }
 }

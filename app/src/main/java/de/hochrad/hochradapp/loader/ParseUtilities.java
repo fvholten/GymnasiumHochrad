@@ -85,10 +85,10 @@ public class ParseUtilities {
         if (text.equals("1./2. Semester")) {
             return new Oberstufenklasse(1);
         }
-        if (text.startsWith("Klasse V")) {
+        if (text.startsWith("klasse V")) {
             return new Vorstufenklasse(text.substring(8));
         }
-        if (text.startsWith("Klasse")) {
+        if (text.startsWith("klasse")) {
             return new normale_Klasse(Integer.parseInt(text.substring(7, 8)), text.substring(8));
         } else {
             return new andere_Klasse(text);
@@ -115,7 +115,7 @@ public class ParseUtilities {
         // </div>
 
         Element h2 = doc.select("h2").get(0);
-        vertretungsplan.Klasse = ParseUtilities.ToKlasse(h2.text());
+        vertretungsplan.klasse = ParseUtilities.ToKlasse(h2.text());
 
         Element outerDiv = doc.getElementById("vertretung");
         String wochentag = "";
@@ -143,7 +143,7 @@ public class ParseUtilities {
                                     vertretung.Raum = ParseUtilities.ToRaum(tds[3].text());
                                     vertretung.Art = ParseUtilities.ToArt(tds[4].text());
                                     vertretung.Informationen = ParseUtilities.ToInformation(tds[7].text());
-                                    vertretung.Klasse = vertretungsplan.Klasse;
+                                    vertretung.Klasse = vertretungsplan.klasse;
                                     vertretungsplan.Hinzufügen(vertretung);
                                 } catch (IllegalArgumentException e) {
                                     vertretungsplan = null;
@@ -201,11 +201,11 @@ public class ParseUtilities {
     }
 
     /*
-    Eine Klasse ist ein Zusammenschluss von Schülern, die denselben Unterricht besuchen und
-    somit dieselben Lehrer, Stundepläne und Vertretungspläne haben. Die Klasse wird in den
-    gleichen Fächern, Räumen und Stunden unterrichtet. Jede Klasse hat eine Inhalt.
-    Zunächst in welchem Schuljahr die Klasse ist und dann ein Buchstabe von a anfangend.
-    Es gibt die normale Klasse, Oberstufenklasse und Vorstufenklasse.
+    Eine klasse ist ein Zusammenschluss von Schülern, die denselben Unterricht besuchen und
+    somit dieselben Lehrer, Stundepläne und Vertretungspläne haben. Die klasse wird in den
+    gleichen Fächern, Räumen und Stunden unterrichtet. Jede klasse hat eine Inhalt.
+    Zunächst in welchem Schuljahr die klasse ist und dann ein Buchstabe von a anfangend.
+    Es gibt die normale klasse, Oberstufenklasse und Vorstufenklasse.
      */
 
     public static String[] ParseKlassenEinlesen(Document doc) {

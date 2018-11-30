@@ -1,7 +1,7 @@
 package de.hochrad.hochradapp.domain;
 
 /*
-Kein Raum heißt einfach, dass die Klasse bzw. das Fach keinen Raum
+Kein Raum heißt einfach, dass die klasse bzw. das Fach keinen Raum
 für die Stunde zugeteilt bekommen hat.
  */
 

@@ -31,6 +31,6 @@ public class WochenLadenTask extends AsyncTask<Void, Void, String[]> {
     }
 
     protected void onPostExecute(String[] result) {
-        callBack.WochenLaden(result);
+        callBack.wochenLaden(result);
     }
 }

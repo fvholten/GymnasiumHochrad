@@ -9,8 +9,8 @@ import de.hochrad.hochradapp.domain.Vertretung;
  */
 
 public class Vertretungsplan {
-//Da ich den Vertretungsplan nur Klassenweise laden, ergibt sich eine globale Klasse
-    public Klasse Klasse;
+//Da ich den Vertretungsplan nur Klassenweise laden, ergibt sich eine globale klasse
+    public Klasse klasse;
 
     public List<Vertretung> Vertretungen = new ArrayList<>();
 

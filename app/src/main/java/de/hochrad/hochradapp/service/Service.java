@@ -17,7 +17,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import de.hochrad.hochradapp.R;
-import de.hochrad.hochradapp.activites.startseite.MainActivity;
+import de.hochrad.hochradapp.activities.AppActivity;
 import de.hochrad.hochradapp.hilfsfunktionen.FileWR;
 import de.hochrad.hochradapp.hilfsfunktionen.Logic;
 import de.hochrad.hochradapp.loader.ParseUtilities;
@@ -53,7 +53,7 @@ public class Service extends android.app.Service {
 
                                 if (fileWR.ladeFile(getFilesDir() + File.separator + "vertretungsplanhash") != docV.text().hashCode()) {
                                     fileWR.writeFile(docV.text().hashCode(), getFilesDir() + File.separator + "vertretungsplanhash");
-                                    Intent intent = new Intent(context, MainActivity.class);
+                                    Intent intent = new Intent(context, AppActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                                     PendingIntent pendingIntent = PendingIntent.getActivity(Service.this, 0, intent, 0);
 

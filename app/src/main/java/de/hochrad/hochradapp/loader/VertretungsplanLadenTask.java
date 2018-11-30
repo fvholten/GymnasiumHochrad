@@ -55,6 +55,6 @@ public class VertretungsplanLadenTask extends AsyncTask<String, Void, Vertretung
         }
     }
     protected void onPostExecute(Vertretungsplan result) {
-        callBack.VertretungsplanLaden(hashcode, result);
+        callBack.vertretungsplanLaden(hashcode, result);
     }
 }

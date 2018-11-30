@@ -13,9 +13,8 @@ import de.hochrad.hochradapp.hilfsfunktionen.Logic;
 
 public class WochennummerLadenTask extends AsyncTask<Void, Void, Integer> {
     private WochennummerLadenTaskCallBack callBack;
-    int wochenauswahl, klassenauswahl;
-    boolean mitklassenauswahl;
-    Document doc;
+    private int wochenauswahl, klassenauswahl;
+    private boolean mitklassenauswahl;
 
     public WochennummerLadenTask(boolean mitklassenauswahl, int klassenauswahl, int wochenauswahl, WochennummerLadenTaskCallBack callBack) {
         this.callBack = callBack;
@@ -30,6 +29,7 @@ public class WochennummerLadenTask extends AsyncTask<Void, Void, Integer> {
         if (!isCancelled()) {
             String url = "https://hochrad.de/idesk/plan/public.php/Vertretungsplan%20Schüler/55b3979bef1fa6b3/frames/navbar.htm";
             Connection connection = Jsoup.connect(url);
+            Document doc;
             try {
                 doc = connection.get();
             } catch (IOException e) {
@@ -41,6 +41,6 @@ public class WochennummerLadenTask extends AsyncTask<Void, Void, Integer> {
 
 
     protected void onPostExecute(Integer result) {
-        callBack.WochennummerLaden(mitklassenauswahl, klassenauswahl, wochenauswahl, result);
+        callBack.wochennummerLaden(mitklassenauswahl, klassenauswahl, wochenauswahl, result);
     }
 }
