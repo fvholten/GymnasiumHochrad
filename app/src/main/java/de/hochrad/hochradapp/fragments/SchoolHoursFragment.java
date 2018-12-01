@@ -26,9 +26,9 @@ public class StundenzeitenFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ((ListView) view.findViewById(R.id.stundenzeiten)).setAdapter(new ArrayAdapter<>(
+        ((ListView) view.findViewById(R.id.school_hours)).setAdapter(new ArrayAdapter<>(
                 view.getContext(),
                 android.R.layout.simple_list_item_1,
-                getResources().getStringArray(R.array.Zeiten)));
+                getResources().getStringArray(R.array.school_hours)));
     }
 }

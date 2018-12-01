@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.*;
 import de.hochrad.hochradapp.R;
-import de.hochrad.hochradapp.activities.AppActivity;
 import de.hochrad.hochradapp.hilfsfunktionen.ConnectionTest;
 import de.hochrad.hochradapp.loader.KlassenLadenTask;
 import de.hochrad.hochradapp.loader.KlassenLadenTaskCallBack;
@@ -30,8 +29,8 @@ public class DetailKlassenauswahlActivity extends AppCompatActivity
         }
 
         Bundle data = getIntent().getExtras();
-        if (data != null && data.containsKey(getString(R.string.selectedItem_key))) {
-            new KlassenLadenTask(data.getInt(getString(R.string.selectedItem_key)) - 1, this).execute();
+        if (data != null && data.containsKey(getString(R.string.selected_item_key))) {
+            new KlassenLadenTask(data.getInt(getString(R.string.selected_item_key)) - 1, this).execute();
         } else {
             finish();
         }

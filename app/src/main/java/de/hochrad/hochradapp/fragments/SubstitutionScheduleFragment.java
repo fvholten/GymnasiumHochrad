@@ -1,7 +1,6 @@
 package de.hochrad.hochradapp.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -63,24 +62,21 @@ public class VertretungsplanFragment extends Fragment implements
         detailView = (DetailView) context;
     }
 
+    private ArrayAdapter<String> getWeekDropdownAdapter(String[] weeks) {
+        ArrayAdapter<String> weekDropdownAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item);
+        weekDropdownAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        weekDropdownAdapter.add(getString(R.string.choose_a_week));
+        weekDropdownAdapter.addAll(weeks);
+        return weekDropdownAdapter;
+    }
+
     @Override
-    public void wochenLaden(String[] wochen) {
-        if (wochen == null) {
-            startActivity();
-        } else {
-            ArrayAdapter<String> wochenauswahlApdatper = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item);
-            wochenauswahlApdatper.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    public void attachWeeks(String[] weeks) {
+        if (weeks != null) {
 
-            ArrayAdapter<String> wochenauswahlAdapterDeineKlasse = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item);
-            wochenauswahlAdapterDeineKlasse.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            wochenauswahlApdatper.add(getString(R.string.WähleeineWoche));
-            wochenauswahlApdatper.addAll(wochen);
-            wochenauswahlAdapterDeineKlasse.add(getString(R.string.WähleeineWoche));
-            wochenauswahlAdapterDeineKlasse.addAll(wochen);
-
-// DEINE KLASSE
+            // DEINE KLASSE
             Spinner deineKlasse = view.findViewById(R.id.deineKlasse);
-            deineKlasse.setAdapter(wochenauswahlAdapterDeineKlasse);
+            deineKlasse.setAdapter(getWeekDropdownAdapter(weeks));
             deineKlasse.setOnItemSelectedListener
                     (new AdapterView.OnItemSelectedListener() {
                         @Override
@@ -99,9 +95,10 @@ public class VertretungsplanFragment extends Fragment implements
                         public void onNothingSelected(AdapterView<?> parent) {
                         }
                     });
-//ALLE KLASSEN
+
+            //ALLE KLASSEN
             Spinner week = view.findViewById(R.id.week);
-            week.setAdapter(wochenauswahlApdatper);
+            week.setAdapter(getWeekDropdownAdapter(weeks));
             week.setOnItemSelectedListener
                     (new AdapterView.OnItemSelectedListener() {
                          @Override
@@ -111,7 +108,7 @@ public class VertretungsplanFragment extends Fragment implements
                                  return;
 
                              Bundle bundle = new Bundle();
-                             bundle.putInt(getString(R.string.selectedItem_key), selectedItem);
+                             bundle.putInt(getString(R.string.selected_item_key), selectedItem);
 
                              detailView.openDetails(DetailKlassenauswahlActivity.class, bundle);
                          }

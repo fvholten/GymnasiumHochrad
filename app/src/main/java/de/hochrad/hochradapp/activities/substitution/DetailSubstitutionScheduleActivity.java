@@ -1,4 +1,4 @@
-package de.hochrad.hochradapp.activities.vertretungsplan;
+package de.hochrad.hochradapp.activities.substitution;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import de.hochrad.hochradapp.R;
 import de.hochrad.hochradapp.domain.Vertretungsplan;
@@ -25,7 +24,7 @@ public class DetailVertretungsplanActivity extends AppCompatActivity implements 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vertretungsplan);
+        setContentView(R.layout.view_substitution_schedule);
         context = this;
         fileWR = new FileWR();
 
@@ -72,9 +71,9 @@ public class DetailVertretungsplanActivity extends AppCompatActivity implements 
                 super.onBackPressed();
             }
             klasse.setText(vertretungsplan.klasse.toString());
-            RecyclerView vertretungen = findViewById(R.id.vertretungsplan);
+            RecyclerView vertretungen = findViewById(R.id.substitutions_schedule);
             if (vertretungsplan.Vertretungen.size() != 0) {
-                vertretungen.setAdapter(new VertretungsplanAdapter(context, vertretungsplan));
+                vertretungen.setAdapter(new SubstitutionScheduleAdapter(context, vertretungsplan));
             } else {
                 TextView keineVertretungen = findViewById(R.id.keineVertretungen);
                 keineVertretungen.setVisibility(View.VISIBLE);

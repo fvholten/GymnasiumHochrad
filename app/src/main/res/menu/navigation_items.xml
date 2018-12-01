@@ -13,14 +13,6 @@
             android:id="@+id/stundenzeiten"
             android:icon="@drawable/ic_access_time_black_24px"
             android:title="@string/stundenzeiten"/>
-        <item
-            android:id="@+id/einstellungen"
-            android:icon="@drawable/ic_settings_black_24px"
-            android:title="@string/Einstellungen"/>
-        <item
-            android:id="@+id/ueber"
-            android:icon="@drawable/ic_info_black_24px"
-            android:title="@string/Über"/>
     </group>
 
 </menu>
