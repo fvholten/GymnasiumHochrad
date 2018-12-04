@@ -1,38 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:theme="@style/AppTheme.NoActionBar"
-              android:layout_height="match_parent"
-              android:fitsSystemWindows="true"
-              android:orientation="vertical"
-              android:paddingTop="5dp"
-              app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-    <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:text="@string/klassenauswahlh"
-            android:textSize="30sp"/>
-
-    <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/spinner"/>
-
-    <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
-            android:indeterminate="true"/>
-
-</LinearLayout>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+											 xmlns:app="http://schemas.android.com/apk/res-auto"
+											 android:orientation="vertical" android:fitsSystemWindows="true"
+											 android:layout_width="match_parent" android:layout_height="match_parent">
+	<android.support.v7.widget.RecyclerView android:id="@+id/klassenauswahl_recycler_view"
+											android:layout_width="match_parent" android:layout_height="match_parent"
+											app:layout_constraintBottom_toBottomOf="parent"
+											app:layout_constraintEnd_toEndOf="parent"
+											app:layout_constraintStart_toStartOf="parent"
+											app:layout_constraintTop_toTopOf="parent"/>
+	<ProgressBar android:id="@+id/progressBar" android:layout_width="wrap_content" android:layout_height="wrap_content"
+				 android:indeterminate="true" app:layout_constraintBottom_toBottomOf="parent"
+				 app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+				 app:layout_constraintTop_toTopOf="parent"/>
+</android.support.constraint.ConstraintLayout>

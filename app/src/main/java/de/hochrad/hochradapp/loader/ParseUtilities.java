@@ -101,7 +101,7 @@ public class ParseUtilities {
     oder das Fach verändern.
     Wenn ein Lehrer nicht zur Stunde erscheinen kann wird entschieden, ob die Stunde vertreten
     wird oder ob sie ausfällt. Wenn sie Vertreten wird so macht das ein Vertretungslehrer.
-    Ein Vertretungsplan setzt sich aus Vertretungen zusammen.
+    Ein Vertretungsplan setzt sich aus vertretungen zusammen.
      */
 
     public static void ParseVertretungsplan(Document doc, Vertretungsplan vertretungsplan) {

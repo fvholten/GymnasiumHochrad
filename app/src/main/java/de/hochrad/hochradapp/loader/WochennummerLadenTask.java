@@ -41,6 +41,6 @@ public class WochennummerLadenTask extends AsyncTask<Void, Void, Integer> {
 
 
     protected void onPostExecute(Integer result) {
-        callBack.wochennummerLaden(mitklassenauswahl, klassenauswahl, wochenauswahl, result);
+        callBack.loadWeekNumber(mitklassenauswahl, klassenauswahl, wochenauswahl, result);
     }
 }

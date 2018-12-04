@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt">
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/startseite"
-            android:icon="@drawable/ic_home_black_24px"
-            android:title="@string/Startseite"/>
-        <item
-            android:id="@+id/vertretungsplan"
-            android:icon="@drawable/ic_view_list_black_24px"
-            android:title="@string/Vertretungsplan"/>
-        <item
-            android:id="@+id/stundenzeiten"
-            android:icon="@drawable/ic_access_time_black_24px"
-            android:title="@string/stundenzeiten"/>
+        <item android:icon="@drawable/ic_home_black_24px" android:id="@+id/news_of_day" android:title="@string/Startseite"/>
+        <item android:icon="@drawable/ic_view_list_black_24px" android:id="@+id/substitutions_schedule" android:title="@string/substitution_schedule"/>
+        <item android:icon="@drawable/ic_access_time_black_24px" android:id="@+id/school_hours" android:title="@string/school_hours"/>
     </group>
-
 </menu>

@@ -6,26 +6,26 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
-
+import android.support.v4.app.NotificationCompat;
+import de.hochrad.hochradapp.R;
+import de.hochrad.hochradapp.activities.AppActivity;
+import de.hochrad.hochradapp.hilfsfunktionen.FileWR;
+import de.hochrad.hochradapp.hilfsfunktionen.Logic;
+import de.hochrad.hochradapp.loader.ParseUtilities;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import de.hochrad.hochradapp.R;
-import de.hochrad.hochradapp.activities.AppActivity;
-import de.hochrad.hochradapp.hilfsfunktionen.FileWR;
-import de.hochrad.hochradapp.hilfsfunktionen.Logic;
-import de.hochrad.hochradapp.loader.ParseUtilities;
-
 public class Service extends android.app.Service {
 
-    Context context = this;
-    FileWR fileWR;
+    private Context context = this;
+    private FileWR fileWR;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -57,19 +57,19 @@ public class Service extends android.app.Service {
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                                     PendingIntent pendingIntent = PendingIntent.getActivity(Service.this, 0, intent, 0);
 
-                                    Notification notification = new Notification.Builder(Service.this)
+                                    Notification notification = new NotificationCompat.Builder(Service.this, String.valueOf(NotificationCompat.DEFAULT_ALL))
                                             .setTicker("Vertretungplanupdate")
                                             .setSmallIcon(R.drawable.ic_view_list_black_24px)
                                             .setContentTitle(getString(R.string.app_name))
                                             .setContentText(getString(R.string.vertretungsplanupdate))
                                             .setContentIntent(pendingIntent)
-                                            .getNotification();
+                                            .build();
                                     notification.flags = Notification.DEFAULT_ALL;
                                     notification.flags = Notification.FLAG_AUTO_CANCEL;
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
                                     NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                                    notificationManager.notify(0, notification);
+                                    Objects.requireNonNull(notificationManager).notify(0, notification);
                                 }
                             } catch (IOException ignored) {
                             }

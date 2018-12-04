@@ -41,6 +41,6 @@ public class NachrichtenDesTagesLadenTask extends AsyncTask<Void, Void, List<Str
     }
 
     protected void onPostExecute(List<String> result) {
-        callBack.NachrichtenDesTages(result);
+        callBack.newsOfDay(result);
     }
 }
