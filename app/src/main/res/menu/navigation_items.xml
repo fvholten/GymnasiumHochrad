@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item android:icon="@drawable/ic_home_black_24px" android:id="@+id/news_of_day" android:title="@string/Startseite"/>
         <item android:icon="@drawable/ic_view_list_black_24px" android:id="@+id/substitutions_schedule" android:title="@string/substitution_schedule"/>

@@ -76,7 +76,7 @@ public class AppActivity extends AppCompatActivity implements DetailView, OnNavi
         } else if (i == R.id.school_hours) {
             fragmentTransaction.replace(R.id.main_view, new SchoolHoursFragment()).commit();
             return true;
-        } else if (i != R.id.substitutions_schedule) {
+        } else if (i == R.id.substitutions_schedule) {
             fragmentTransaction.replace(R.id.main_view, new SubstitutionScheduleFragment()).commit();
             return true;
         } else {
